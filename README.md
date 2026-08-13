@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Repositório de Exercícios - 2º Termo DEVIS
 
 ## 📋 Descrição do Projeto
@@ -319,3 +320,7 @@ Para dúvidas ou problemas na execução:
 ---
 
 **Última atualização:** 2026-08-13
+=======
+Atividade
+
+>>>>>>> 3e95076e1c1efb196ccac2c8f32f5c9925b6227c
