@@ -1,0 +1,220 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil MS Sans Serif;}{\f1\fnil\fcharset0 MS Sans Serif;}}
+{\colortbl ;\red0\green0\blue255;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\b\f0\fs16 001 - Atributo: \cf2\b0 CNPJ\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 002 - Atributo: \cf2\b0 CPF_funcionario\cf1\b 
+\par \cf0\b0 fun\f1\'e7ao: armazenar o CPF do funcionario, como unico 
+\par tipo: varchar914) not null  \f0 
+\par \cf1\b 003 - Atributo: \cf2\b0 ID_clientes\cf1\b 
+\par \cf0\b0 ID_clientes 
+\par fun\f1\'e7\'e3o: Cadrastro do ID dos clientes
+\par tipo: int auto_incrimet primary key  \f0 
+\par \cf1\b 004 - Atributo: \cf2\b0 ID_funcionario\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o ID do funcionario 
+\par tipo: int auto_incriment prmary key
+\par \f0 
+\par \cf1\b 005 - Atributo: \cf2\b0 ID_marca\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o ID do modelo
+\par tipo: int auto_incrimet primary key 
+\par \f0 
+\par \cf1\b 006 - Atributo: \cf2\b0 ID_modelo\cf1\b 
+\par \cf0\b0 fun\f1\'e7ao: armazenar o ID do modelo 
+\par tipo: int auto_incriment primary key  \f0 
+\par \cf1\b 007 - Atributo: \cf2\b0 ID_ordens_servo\f1\'e7os\cf1\b 
+\par \cf0\b0\f0 
+\par \cf1\b 008 - Atributo: \cf2\b0 ID_pe\f1\'e7a\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: armazenar ID da pe\'e7a 
+\par tipo: int auto_incrimet primary key 
+\par \f0 
+\par \cf1\b 009 - Atributo: \cf2\b0 ID_servi\f1\'e7os\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7ao: armazenar o ID dos servi\'e7os
+\par tipo: int auto_incriment primary key  
+\par \f0 
+\par \cf1\b 010 - Atributo: \cf2\b0 ID_veiculo\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: cadasatro do ID dos clientes 
+\par tipo: int auto_incriment primary not null
+\par \f0 
+\par \cf1\b 011 - Entidade: \cf2\b0 Ordens de servi\f1\'e7os \cf1\b 
+\par \cf0\b0\f0 
+\par \cf1\b 012 - Atributo: \cf2\b0 ano_fabrica\f1\'e7\'e3o\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: armazenar o ano de fabrica\'e7\'e3o 
+\par tipo: date not null \f0 
+\par \cf1\b 013 - Atributo: \cf2\b0 ano_fabrica\f1\'e7\'e3o_veiculo\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: armazenar o ano de fabrica\'e7\'e3o 
+\par tipo: date not null \f0 
+\par \cf1\b 014 - Atributo: \cf2\b0 antigo\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 015 - Atributo: \cf2\b0 cargos\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 016 - Entidade: \cf2\b0 clientes \cf1\b 
+\par \cf0\b0 entidade: clientes
+\par fun\f1\'e7\'e3o: armazena os dados dos clientes  \f0 
+\par \cf1\b 017 - Atributo: \cf2\b0 cor_modelo\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar a cor do modelo 
+\par tipo: varchar(10) not null 
+\par \f0 
+\par \cf1\b 018 - Atributo: \cf2\b0 data_entrada_empresa\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: data da entrada do funcionario 
+\par tipo: date nit null 
+\par \f0 
+\par \cf1\b 019 - Atributo: \cf2\b0 data_nascimento\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar a data de nascimento do funcionario 
+\par tipo: date not null
+\par \f0 
+\par \cf1\b 020 - Atributo: \cf2\b0 documenta\f1\'e7ao_veiculo\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: varificar se a documenta\'e7\'e3o esta em dia, armazenando 
+\par tipo: varchar(400) not null unique 
+\par \f0 
+\par \cf1\b 021 - Atributo: \cf2\b0 email_cliente\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o email do cliente
+\par tipo: varchar(30) not null
+\par \f0 
+\par \cf1\b 022 - Entidade: \cf2\b0 fornecedores\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 023 - Entidade: \cf2\b0 funcionarios\cf1\b 
+\par \cf0\b0 entidade: funcionarios 
+\par fun\f1\'e7\'e3o: armazenar os dados dos funcionarios
+\par \f0 
+\par \cf1\b 024 - Atributo: \cf2\b0 horario_de_pausa__de_cada_servi\f1\'e7o\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7ao: armazenar o harario fixo de pausa para cada servi\'e7o 
+\par tipo: varchar(10) not null 
+\par \f0 
+\par \cf1\b 025 - Atributo: \cf2\b0 horario_de_saida\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 026 - Atributo: \cf2\b0 horario_entrada\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 027 - Atributo: \cf2\b0 idade_funcionario\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar a idade do funcionario 
+\par tipo: int not null 
+\par \f0 
+\par \cf1\b 028 - Atributo: \cf2\b0 importa\f1\'e7\'e3o\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: armazanaer se a pe\'e7a sera importada intercionalmente ou nacionalmente 
+\par tipo: convenio erum('internacional,nacional') not null 
+\par \f0 
+\par \cf1\b 029 - Atributo: \cf2\b0 internacinal \cf1\b 
+\par \cf0\b0 
+\par \cf1\b 030 - Atributo: \cf2\b0 marca_antiga\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o modelo do veiculo
+\par tipo: varchar(30) not null
+\par \f0 
+\par \cf1\b 031 - Atributo: \cf2\b0 marca_recente\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o modelo, verificando se \'e9 recente a fabrica\'e7\'e3o dele 
+\par tipo: varchar(30) not null
+\par \f0 
+\par \cf1\b 032 - Entidade: \cf2\b0 marcas\cf1\b 
+\par \cf0\b0 entidade:marcas
+\par fun\f1\'e7\'e3o: armazenar os dados de cada marca  \f0 
+\par \cf1\b 033 - Atributo: \cf2\b0 modelo\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar, se o modelo \'e9 novo ou antigo 
+\par tipo: convenio erum('novo,antigo') not null 
+\par \f0 
+\par \cf1\b 034 - Entidade: \cf2\b0 modelos\cf1\b 
+\par \cf0\b0 entidade: modelo 
+\par fun\f1\'e7\'e3o:armazenar os dados de cada modelo 
+\par \f0 
+\par \cf1\b 035 - Atributo: \cf2\b0 nacional \cf1\b 
+\par \cf0\b0 
+\par \cf1\b 036 - Atributo: \cf2\b0 nacionalidade_marca\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o armazenar a nacionaliade da marca 
+\par tipo: varchar(30) not null
+\par \f0 
+\par \cf1\b 037 - Atributo: \cf2\b0 nao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 038 - Atributo: \cf2\b0 nascimento_cliente\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar nascimento do cliente
+\par tipo: date not null
+\par \f0 
+\par \cf1\b 039 - Atributo: \cf2\b0 nome_cliente\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o nome do cliente
+\par tipo: varchar(30) not null \f0 
+\par \cf1\b 040 - Atributo: \cf2\b0 nome_funcionario\cf1\b 
+\par \cf0\b0 fun\f1\'e7ao: armazenar o nome do funcionario 
+\par tipo: varchar(30) not null 
+\par \f0 
+\par \cf1\b 041 - Atributo: \cf2\b0 nome_marca\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o nome da marca
+\par tipo: varchar(30) not null
+\par \f0 
+\par \cf1\b 042 - Atributo: \cf2\b0 nome_marca\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o nome da marca do modelo 
+\par tipo> varchar(30) not null 
+\par \f0 
+\par \cf1\b 043 - Atributo: \cf2\b0 nome_modelo\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o nome do modelo 
+\par tipo: varchar(30) not null
+\par \f0 
+\par \cf1\b 044 - Atributo: \cf2\b0 nome_peca\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o nome da pe\'e7a 
+\par tipo: varchar(20) not null  \f0 
+\par \cf1\b 045 - Atributo: \cf2\b0 nome_pecas_serao_trocadas\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o nome das pe\'e7as que sar\'e3o trocada no veiculo, caso nao tiver a pe\'e7a daquele modelo sera nacessario pedir 
+\par tipo: verchar(30) not null
+\par \f0 
+\par \cf1\b 046 - Atributo: \cf2\b0 nome_responsavel\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 047 - Atributo: \cf2\b0 nomes_de_cada_servi\f1\'e7o\cf1\b 
+\par \cf0\b0\f0 
+\par \cf1\b 048 - Atributo: \cf2\b0 novo\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 049 - Entidade: \cf2\b0 pagamentos\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 050 - Atributo: \cf2\b0 peso_veiculo\cf1\b 
+\par \cf0\b0 fun\f1\'e7ao: armazenar o peso de cada veiculo
+\par tipo: int not null
+\par \f0 
+\par \cf1\b 051 - Entidade: \cf2\b0 pe\f1\'e7as\cf1\b 
+\par \cf0\b0\f0 entidade: pe\f1\'e7as 
+\par fun\'e7\'e3o armazenar dados das pe\'e7as 
+\par \f0 
+\par \cf1\b 052 - Atributo: \cf2\b0 placa_veiculo\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: identificar, e armazenar a placa de cada veiculo
+\par tipo: varchar(15) not null
+\par \f0 
+\par \cf1\b 053 - Atributo: \cf2\b0 possui_cadastro \cf1\b 
+\par \cf0\b0 fu\f1\'e7\'e3o: armazena o cadastro, e verifica
+\par tipo:varchar: convenio enum('sim,nao') not null
+\par \f0 
+\par \cf1\b 054 - Atributo: \cf2\b0 preco_para_empresa\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o pre\'e7o da pe\'e7a para a empresa
+\par tipo: int not nul 
+\par \f0 
+\par \cf1\b 055 - Atributo: \cf2\b0 pre\f1\'e7o_cliente\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: armazenar o pre\'e7o da pe\'e7a para o cliente 
+\par tipo: int not null 
+\par \f0 
+\par \cf1\b 056 - Atributo: \cf2\b0 quantidade_funcionarios_em_cada_servi\f1\'e7o\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: Armazenar a quantidade de funcionarios em cada serviso 
+\par tipo: int not null 
+\par \f0 
+\par \cf1\b 057 - Atributo: \cf2\b0 salario_minimo_cada_servi\f1\'e7o\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7\'e3o: armazanar o salario minimo de cada servi\'e7o
+\par tipo int not null 
+\par \f0 
+\par \cf1\b 058 - Entidade: \cf2\b0 servi\f1\'e7os\cf1\b 
+\par \cf0\b0\f0 entidade : servo\f1\'e7os 
+\par fun\'e7\'e3o: armazenar os dados dos servi\'e7os dentro da empresa 
+\par \f0 
+\par \cf1\b 059 - Atributo: \cf2\b0 sim\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 060 - Atributo: \cf2\b0 tamanho_pe\f1\'e7a\cf1\b 
+\par \cf0\b0\f0 fun\f1\'e7ao: armazenar o tamanho de cada pe\'e7a 
+\par tipo: int not null 
+\par \f0 
+\par \cf1\b 061 - Atributo: \cf2\b0 telefone_cliente\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o telefone do cliente 
+\par tipo: varchar(15) not null
+\par \f0 
+\par \cf1\b 062 - Atributo: \cf2\b0 tipo_de_veiculo\cf1\b 
+\par \cf0\b0 fun\f1\'e7\'e3o: armazenar o tipo de veiculo de cada veiculo
+\par tipo: varchar(30) not null \f0 
+\par \cf1\b 063 - Atributo: \cf2\b0 turnos\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 064 - Atributo: \cf2\b0 valor_total\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 065 - Entidade: \cf2\b0 ve\f1\'edculos\cf1\b 
+\par \cf0\b0\f0 entidade: veiculos
+\par fun\f1\'e7\'e3o: armazenar os dados do veiculo 
+\par \f0 
+\par 
+\par }
+ 
