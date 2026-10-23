@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+body {
+    background-color: #250f24;
+    color: #ffffff;
+}
+
+header {
+    background-color: #0b0d1b;
+    padding: 20px 50px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    color: #e91e63;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.menu a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+
+.banner-principal {
+    display: flex;
+    align-items: center;
+    padding: 60px 50px;
+}
+
+.subtitulo {
+    color: #00bcd4;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.texto-banner h1 {
+max-width: 456px;
+}
+
+.texto-banner p {
+    color: #a7acc5;
+    margin-bottom: 25px;
+    max-width: 450px;
+}
+
+.botao-play {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.imagem-ilustracao .bloco-card {
+    background-color: #1a1d36;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.imagem-ilustracao img {
+    width: 250px;
+    height: 150px;
+
+}
+
+.bloco-card p {
+    margin-top: 10px;
+
+}
+
+
+.secao-classicos, .secao-herois, .secao-producoes {
+    padding: 50px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.descricao-secao {
+    color: #a0a5c0;
+
+}
+
+.centralizado {
+    text-align: center;
+}
+
+
+.container-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card-item, .card-heroi {
+    background-color: #161930;
+    border-radius: 12px;
+    padding: 15px;
+    flex: 1;
+}
+
+.imagem-card {
+    width: 100%;
+}
+
+.ano, .categoria {
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+
+.lista-producoes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.item-producao {
+    display: flex;
+    align-items: center;
+    background-color: #161930;
+    border-radius: 12px;
+}
+
+.imagem-producao {
+    width: 50%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.texto-lado {
+    padding: 30px;
+    width: 50%;
+}
+
+.numero {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00bcd4;
+}
+
+.sub-texto {
+    color: #a0a5c0;
+}
+
+.nome-desenho {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+.Sobre {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #13152a;
+}
+
+.Sobre01{
+    border-radius: 12px;
+}
+
+.sub-banner {
+    color: #e91e63;
+    font-weight: bold;
+}
+
+
+footer {
+    background-color: #0b0d1b;
+    padding: 30px 50px;
+    text-align: left;
+}
+
+.rodape-conteudo {
+    margin-bottom: 20px;
+  .logo{
+    text-align: left;
+  }
+}
+
+.frase-rodape {
+    color: #a0a5c0;
+    font-style: italic;
+    margin: 10px;
+    text-align:center;
+}
+
+.redes-sociais a {
+    color: #00bcd4;
+    margin: 0 10px;
+}
+
+.creditos {
+    color: #6c7293;
+    text-align: center;
+    
+}
+
+
+

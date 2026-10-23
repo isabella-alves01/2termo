@@ -163,8 +163,18 @@ ORDER BY VALOR_COMPRADO DESC;
 
 -- 19. Mostre todos os clientes, inclusive aqueles que nunca fizeram pedidos.
 
+SELECT c.*
+FROM cliente c
+LEFT JOIN pedido p ON c.id_cliente = p.id_cliente;
+
 
 -- 20. Liste apenas os clientes que nunca fizeram pedidos.
+
+SELECT c.*
+FROM cliente c
+LEFT JOIN pedido p ON c.id_cliente = p.id_cliente
+WHERE p.id_pedido IS NULL;
+
 
 
 -- PARTE E - DESAFIO GERENCIAL
@@ -173,19 +183,61 @@ ORDER BY VALOR_COMPRADO DESC;
 --     cada cliente gastou. Ordene do maior gasto para o menor.
 
 
+SELECT
+    c.nome AS Nome_Cliente,
+    COUNT(p.id_pedido) AS Quantidade_Pedidos,
+    SUM(p.valor_total) AS Total_Gasto
+FROM cliente c
+JOIN pedido p ON c.id_cliente = p.id_cliente
+WHERE p.status_pedido = 'FINALIZADO'
+GROUP BY c.id_cliente, c.nome
+ORDER BY Total_Gasto DESC;
+
+
 -- 22. Mostre a quantidade de produtos e o preço médio de cada categoria.
+
+SELECT
+    c.nome AS Categoria,
+    COUNT(p.id_produto) AS Quantidade_Produtos,
+    AVG(p.preco) AS Preco_Medio
+FROM categoria c
+JOIN produto p ON c.id_categoria = p.id_categoria
+GROUP BY c.id_categoria, c.nome;
 
 
 -- 23. Descubra quais produtos possuem preço superior ao preço médio geral.
+
+SELECT nome, preco
+FROM produto
+WHERE preco > (SELECT AVG(preco) FROM produto);
+
 
 
 -- 24. Classifique os produtos como Econômico, Intermediário ou Premium.
 --     Defina e informe suas faixas de preço.
 
+SELECT
+    nome,
+    preco,
+    CASE
+        WHEN preco <= 10.00 THEN 'Economico'
+        WHEN preco <= 25.00 THEN 'Intermediario'
+        ELSE 'Premium'
+    END AS Classificacao
+FROM produto;
 
 -- 25. CONSULTA AUTORAL
 -- Pergunta de negócio:
---
+
 -- Por que essa informação é útil?
+
+-- Foi útil porque permite organizar os produtos por categoria, facilitando a consulta dos preços e a organização do cardápio da cafeteria.
 --
 -- Consulta:
+SELECT
+    p.nome AS Produto,
+    p.preco AS Preco,
+    c.nome AS Categoria
+FROM produto p
+JOIN categoria c ON p.id_categoria = c.id_categoria
+ORDER BY c.nome, p.nome;
