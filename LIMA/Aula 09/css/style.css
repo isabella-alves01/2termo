@@ -1,0 +1,87 @@
+body {
+    background-color: #ffffff;
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: row; 
+    gap: 250px;
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #674311;
+    justify-content: left;
+}   
+ 
+.SmartCoffee {
+    display: flex;
+    width: 20px;
+    padding: 20px;
+    margin: 0;
+    justify-content: left;
+}   
+
+nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 20px;
+    margin: 15px;
+}
+
+.banner {
+    background-color: #DACAB8;
+    padding: 20px;
+    margin: 5px;
+}
+
+button {
+    background-color: #A77023;
+}
+
+button a {
+    color: black;
+}   
+
+h1 {
+    text-align: justify;
+}
+
+.nos {
+    background-color: #DACAB8;
+    padding: 20px;
+    margin: 5px;
+}
+
+#cafes {
+    background-color: #DACAB8;
+    padding: 20px;
+    margin: 5px;
+}
+
+.ambiente {
+    background-color: #DACAB8;
+    padding: 20px;
+    margin: 5px;
+}
+
+.lista-cafe {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+}
+
+.grid-img {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 23px;
+    list-style: none;
+    padding: 0;
+}

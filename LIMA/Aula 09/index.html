@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#imagem">
+    <link rel="stylesheet" href="css/style.css">
+    <title>SmartCoffee - Seu Café com Inteligência</title>
+</head>
+<body>
+ 
+ <header class="cabecalho">
+    <h1 class="SmartCoffee">SmartCoffee</h1>
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#contato">Contato</a>
+    </nav>
+</header>
+
+<main>
+    <section id="inicio" class="banner">
+        <header class="banner-conteudo">            
+            <h1>Café que <br> conecta pessoas</h1>
+            <p>Mais que café, uma experiência</p>
+            <button><a href="#cafes">Ver Cardápio</a></button> 
+        </header>
+        
+        <figure class="banner-imagem">
+            <img src="img/cafe_servido.png" alt="Café servido na SmartCoffee">
+        </figure>
+    </section>
+
+    <section id="sobre" class="nos">
+        <h2>Sobre Nós</h2>
+        <p>
+            Na SmartCoffee, unimos a paixão por grãos selecionados à inovação da vida moderna. Criamos o ambiente e o café perfeitos para inspirar o seu dia com praticidade e muito sabor.
+        </p>
+        <figure class="banner-sobrenos">
+            <img src="img/cafe_sobre.png" alt="Imagem sobre nós">
+        </figure>
+        <button><a href="#">Saiba mais</a></button>
+    </section>
+
+    <section id="cafes" class="cafes">
+        <header class="cafe-cabecalho">
+            <h2>Nossos Cafés</h2>
+        </header>
+
+        <!-- Galeria de Produtos organizados para CSS Grid -->
+        <ul class="lista-cafe">
+            <li>
+                <article class="card-cafe">
+                    <img src="img/espresso.png" alt="Espresso tradicional">
+                    <h3>Expresso Tradicional</h3>
+                    <p>Intenso como boas conversas</p>
+                    <strong>R$ 15,90</strong>
+                </article>
+            </li>
+            
+            <li>
+                <article class="card-cafe">
+                    <img src="img/capuccino.png" alt="Capuccino tradicional">
+                    <h3>Capuccino Tradicional</h3>
+                    <p>Equilíbrio entre sabor e cremosidade</p>
+                    <strong>R$ 18,95</strong>
+                </article>
+            </li>
+            
+            <li>
+                <article class="card-cafe">
+                    <img src="img/latte.png" alt="Latte Caramelo">
+                    <h3>Latte Caramelo</h3>
+                    <p>Leve, doce e irresistível</p>
+                    <strong>R$ 25,80</strong>
+                </article>
+            </li>
+        </ul>
+    </section>
+
+    <section id="ambiente" class="ambiente">
+        <header class="ambiente-conteudo">
+            <h2>Nosso ambiente</h2>
+            <p>
+                O espaço da SmartCoffee combina conforto, praticidade e inspiração em um design moderno. É o local perfeito para focar no trabalho, fazer reuniões ou simplesmente relaxar.
+                Oferecemos Wi-Fi de alta velocidade, tomadas em todas as mesas e acomodações versáteis — de bancadas produtivas a sofás acolhedores.
+            </p>
+            <a href="#contato">Conheça</a>
+        </header>
+
+        <figure class="ambiente-imagem">
+            <img src="img/ambiente_imagem.png" alt="Espaço Interno SmartCoffee">
+        </figure>
+    </section>
+
+    <section id="contato" class="contato-cabecalho">
+        <header class="contato-conteudo">
+            <h2>Contato</h2>
+            <p>
+                Queremos estar sempre perto de você. Seja para tirar dúvidas, fazer encomendas, sugerir melhorias ou acompanhar as novidades da SmartCoffee, escolha o canal de sua preferência e fale com a nossa equipe:
+            </p>
+        </header>
+
+        <form>
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome"><br><br>
+            
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email"><br><br>
+            
+            <label for="mensagem">Mensagem</label>
+            <textarea name="mensagem" id="mensagem"></textarea><br><br>
+        
+            <button type="submit">Enviar mensagem 🙃</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>SmartCoffee</p>
+    <figure class="instagram-smartcoffee">
+        <a href="#instagram">
+            <img src="img/instagram-smartcoffee.png" alt="Link Instagram SmartCoffee"> Instagram
+        </a>
+    </figure>
+</footer>
+</body>
+</html>

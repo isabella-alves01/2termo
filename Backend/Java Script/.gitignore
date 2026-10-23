@@ -1,0 +1,38 @@
+# Dependências
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Ambiente
+.env
+.env.*
+!.env.example
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Build / artefatos
+dist/
+build/
+coverage/
+.out/
+.cache/
+.next/
+.nuxt/
+vite/
+tmp/
+temp/
+
+# Logs
+logs/
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

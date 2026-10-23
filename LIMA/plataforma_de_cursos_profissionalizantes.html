@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPro - Cursos Profissionalizantes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; transition: font-size 0.2s, background-color 0.3s, color 0.3s; }
+        .high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        .high-contrast * {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+            border-color: #ffff00 !important;
+        }
+        .high-contrast button, .high-contrast a {
+            color: #00ffff !important;
+        }
+        /* Custom Animations */
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <div class="bg-slate-900 text-white text-xs py-2 px-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="font-semibold text-brand-300">Acessibilidade:</span>
+                <button onclick="toggleHighContrast()" title="Alternar Alto Contraste" class="bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded text-xs border border-slate-700 transition">
+                    👁️ Alto Contraste
+                </button>
+                <button onclick="changeFontSize(1)" title="Aumentar Fonte" class="bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded text-xs font-bold border border-slate-700">
+                    A+
+                </button>
+                <button onclick="changeFontSize(-1)" title="Diminuir Fonte" class="bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded text-xs font-bold border border-slate-700">
+                    A-
+                </button>
+                <button onclick="resetFontSize()" title="Tamanho Padrão" class="bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded text-xs border border-slate-700">
+                    A
+                </button>
+            </div>
+            <div class="flex items-center gap-4">
+                <span id="screen-reader-status" class="text-emerald-400 text-xs hidden sm:inline">✓ Modo de Leitura Focado</span>
+                <a href="#conteudo-principal" class="sr-only focus:not-sr-only bg-brand-600 text-white p-1 rounded">Ir para o conteúdo</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white border-b border-slate-200 sticky top-8 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="showTab('home')">
+                    <div class="bg-brand-600 text-white p-2.5 rounded-xl font-black text-xl tracking-wider shadow-md">
+                        EP
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-slate-900 tracking-tight">Edu<span class="text-brand-600">Pro</span></span>
+                        <span class="block text-[10px] text-slate-500 font-medium -mt-1">Qualificação Profissional</span>
+                    </div>
+                </div>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-2">
+                    <button onclick="showTab('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition text-brand-600 bg-brand-50">Início</button>
+                    <button onclick="showTab('cursos')" id="nav-cursos" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition">Cursos</button>
+                    <button onclick="showTab('meus-cursos')" id="nav-meus-cursos" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition flex items-center gap-1.5">
+                        Meus Cursos <span class="bg-brand-100 text-brand-700 text-xs font-bold px-1.5 py-0.5 rounded-full">2</span>
+                    </button>
+                    <button onclick="showTab('sobre')" id="nav-sobre" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition">Sobre Nós</button>
+                    <button onclick="showTab('suporte')" id="nav-suporte" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition">Suporte & FAQ</button>
+                </nav>
+
+                <!-- Ações do Usuário -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button onclick="openQuiz()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3.5 py-2 rounded-lg text-xs transition shadow-sm flex items-center gap-1.5 animate-pulse">
+                        🎯 Qual curso fazer?
+                    </button>
+                    <button onclick="showTab('meus-cursos')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4 py-2 rounded-lg text-sm transition shadow-sm">
+                        Área do Aluno
+                    </button>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button onclick="openQuiz()" class="bg-amber-500 text-slate-900 font-bold p-2 rounded-lg text-xs">🎯 Quiz</button>
+                    <button onclick="toggleMobileMenu()" class="text-slate-600 hover:text-slate-900 p-2 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="showTab('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Início</button>
+            <button onclick="showTab('cursos'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Cursos</button>
+            <button onclick="showTab('meus-cursos'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Meus Cursos (2)</button>
+            <button onclick="showTab('sobre'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Sobre Nós</button>
+            <button onclick="showTab('suporte'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Suporte & FAQ</button>
+        </div>
+    </header>
+
+    <main id="conteudo-principal" class="flex-grow">
+
+        <!-- ================= ABA 1: HOME ================= -->
+        <section id="tab-home" class="tab-content">
+            <!-- Hero Section -->
+            <div class="bg-gradient-to-br from-brand-900 via-brand-800 to-slate-900 text-white py-16 md:py-24 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="inline-block bg-brand-500/20 text-brand-200 border border-brand-400/30 font-medium text-xs px-3 py-1 rounded-full mb-4">
+                                🚀 Certificados Reconhecidos no Mercado
+                            </span>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                                Transforme sua carreira com <span class="text-brand-300">cursos práticos</span> e rápidos.
+                            </h1>
+                            <p class="text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                                Formação profissionalizante para estudantes, trabalhadores em busca de promoção e parcerias corporativas para instituições.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="showTab('cursos')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3.5 rounded-xl text-center shadow-lg transition">
+                                    Explorar Cursos
+                                </button>
+                                <button onclick="openQuiz()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-600 font-bold px-6 py-3.5 rounded-xl text-center transition flex items-center justify-center gap-2">
+                                    <span>🎯</span> Teste de Orientação Grátis
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Alunos estudando juntos" class="rounded-xl shadow-lg w-full h-64 sm:h-80 object-cover" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=EduPro+Plataforma'">
+                                <div class="mt-4 bg-white text-slate-900 p-4 rounded-xl flex items-center justify-between shadow-md">
+                                    <div class="flex items-center gap-3">
+                                        <div class="bg-emerald-100 text-emerald-600 p-2 rounded-lg font-bold">✓</div>
+                                        <div>
+                                            <p class="font-bold text-sm">Mais de 45,000 Alunos</p>
+                                            <p class="text-xs text-slate-500">Qualificados em todo o Brasil</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-amber-500 text-sm font-bold">★ 4.9/5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas -->
+            <div class="bg-white border-y border-slate-200 py-10">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <p class="text-3xl font-extrabold text-brand-600">120+</p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Cursos Profissionalizantes</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-extrabold text-brand-600">94%</p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Taxa de Empregabilidade</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-extrabold text-brand-600">100%</p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Online e Flexível</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-extrabold text-brand-600">350+</p>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Empresas Parceiras</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destaques -->
+            <div class="max-w-7xl mx-auto px-4 py-16">
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Cursos em Destaque</h2>
+                        <p class="text-slate-500 text-sm">Os mais procurados pelo mercado de trabalho</p>
+                    </div>
+                    <button onclick="showTab('cursos')" class="text-brand-600 font-bold text-sm hover:underline">Ver todos →</button>
+                </div>
+
+                <div id="featured-courses-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards inseridos via JS -->
+                </div>
+            </div>
+
+            <!-- Chamada Ação Quiz -->
+            <div class="max-w-7xl mx-auto px-4 pb-16">
+                <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 p-8 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <span class="bg-black/10 text-xs font-bold px-3 py-1 rounded-full uppercase">Orientação Gratuita</span>
+                        <h3 class="text-2xl font-extrabold mt-2">Em dúvida sobre qual carreira seguir?</h3>
+                        <p class="text-slate-900 text-sm mt-1">Responda a 3 perguntas rápidas e nosso sistema inteligente indicará os melhores cursos para seu perfil.</p>
+                    </div>
+                    <button onclick="openQuiz()" class="bg-slate-900 text-white font-bold px-6 py-3.5 rounded-xl hover:bg-slate-800 transition whitespace-nowrap">
+                        Iniciar Teste (1 min)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 2: SOBRE ================= -->
+        <section id="tab-sobre" class="tab-content hidden">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">Nossa Missão é Conectar Pessoas ao Futuro do Trabalho</h1>
+                    <p class="text-slate-600 leading-relaxed">
+                        A EduPro nasceu com o propósito de democratizar o acesso à qualificação profissional de alto nível, preparando trabalhadores e estudantes para os desafios Reais do mercado modernizado.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 my-12">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center font-bold text-xl mb-4">🎓</div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Para Estudantes</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Primeira oportunidade de estágio ou emprego com capacitação prática, projetos reais e suporte para montagem de currículo.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-xl mb-4">💼</div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Para Trabalhadores</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Requalificação rápida para transição de carreira, promoções internas e atualização com as novas tecnologias do setor.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center font-bold text-xl mb-4">🏛️</div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">Para Instituições</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Parcerias estratégicas para capacitação de turmas de aprendizes, programas de qualificação corporativa e órgãos públicos.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white p-8 sm:p-12 rounded-3xl grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4">Compromisso com a Acessibilidade e Inclusão</h2>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            Acreditamos que a educação deve ser para todos. Toda a nossa plataforma foi construída seguindo diretrizes internacionais de acessibilidade (WCAG), garantindo navegação para pessoas com diferentes necessidades visuais e motoras.
+                        </p>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Compatível com leitores de tela</li>
+                            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Alto contraste visual ajustável</li>
+                            <li class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Suporte ativo com o assistente virtual Edu</li>
+                        </ul>
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="Inclusão e educação" class="rounded-2xl shadow-lg border border-slate-700 max-h-72 object-cover" onerror="this.src='https://placehold.co/600x400/0f172a/ffffff?text=Acessibilidade+EduPro'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 3: CURSOS ================= -->
+        <section id="tab-cursos" class="tab-content hidden">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <!-- Cabeçalho e Filtros -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mb-8">
+                    <h1 class="text-2xl font-bold text-slate-900 mb-4">Catálogo Completo de Cursos</h1>
+                    
+                    <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                        <!-- Busca -->
+                        <div class="relative w-full md:w-96">
+                            <input type="text" id="course-search" oninput="filterCourses()" placeholder="Buscar por título ou tecnologia..." class="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <span class="absolute left-3 top-3 text-slate-400">🔍</span>
+                        </div>
+
+                        <!-- Categorias (Filtro) -->
+                        <div class="flex flex-wrap gap-2 w-full md:w-auto" id="category-filters">
+                            <button onclick="setCategoryFilter('all')" class="cat-btn active border px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 text-white">Todos</button>
+                            <button onclick="setCategoryFilter('Tecnologia')" class="cat-btn border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100">Tecnologia</button>
+                            <button onclick="setCategoryFilter('Gestão')" class="cat-btn border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100">Gestão & Negócios</button>
+                            <button onclick="setCategoryFilter('Indústria')" class="cat-btn border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100">Indústria & Serviços</button>
+                            <button onclick="setCategoryFilter('Saúde')" class="cat-btn border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100">Saúde</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de Cursos -->
+                <div id="all-courses-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Renderizado dinamicamente via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 4: MEUS CURSOS (PAINEL DO ALUNO) ================= -->
+        <section id="tab-meus-cursos" class="tab-content hidden">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <!-- Cabeçalho do Aluno -->
+                <div class="bg-gradient-to-r from-brand-900 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-brand-500 rounded-full flex items-center justify-center text-2xl font-bold border-2 border-white">
+                            JS
+                        </div>
+                        <div>
+                            <h1 class="text-xl sm:text-2xl font-bold">Bem-vindo(a), João Silva</h1>
+                            <p class="text-slate-300 text-sm">Matrícula: #2026-8841 • Status: <span class="text-emerald-400 font-semibold">Ativo</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl text-xs flex gap-4">
+                        <div>
+                            <span class="block text-slate-400">Em andamento</span>
+                            <span class="font-bold text-base">2 Cursos</span>
+                        </div>
+                        <div class="border-l border-white/20 pl-4">
+                            <span class="block text-slate-400">Certificados</span>
+                            <span class="font-bold text-base text-amber-300">1 Concluído</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-bold text-slate-900 mb-6">Seus Cursos em Andamento</h2>
+
+                <!-- Lista de Cursos do Aluno -->
+                <div class="space-y-6">
+                    <!-- Curso 1 -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-brand-100 text-brand-700 text-xs font-bold px-2.5 py-0.5 rounded-full">Tecnologia</span>
+                                <span class="text-slate-400 text-xs">• Acesso Vitalício</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Desenvolvimento Web Frontend Profissional</h3>
+                            <p class="text-slate-500 text-xs mt-1">Última aula: CSS Grid e Responsividade (Módulo 3, Aula 4)</p>
+
+                            <!-- Barra de Progresso -->
+                            <div class="mt-4">
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-600">Progresso do Curso</span>
+                                    <span class="text-brand-600">65%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-brand-600 h-full rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row md:flex-col justify-center gap-2 min-w-[200px]">
+                            <button onclick="openLessonModal('Desenvolvimento Web Frontend', 'CSS Grid e Flexbox Avançado')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition text-center">
+                                ▶ Continuar Aula
+                            </button>
+                            <button onclick="showToast('Baixando material complementar em PDF...')" class="border border-slate-300 text-slate-700 font-medium py-2 px-4 rounded-xl text-xs hover:bg-slate-50 transition text-center">
+                                📁 Material Didático
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Curso 2 -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2.5 py-0.5 rounded-full">Gestão</span>
+                                <span class="text-slate-400 text-xs">• Acesso Vitalício</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Assistente Administrativo e Financeiro</h3>
+                            <p class="text-slate-500 text-xs mt-1">Última aula: Gestão de Fluxo de Caixa (Módulo 2, Aula 1)</p>
+
+                            <!-- Barra de Progresso -->
+                            <div class="mt-4">
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span class="text-slate-600">Progresso do Curso</span>
+                                    <span class="text-brand-600">30%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-brand-600 h-full rounded-full" style="width: 30%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row md:flex-col justify-center gap-2 min-w-[200px]">
+                            <button onclick="openLessonModal('Assistente Administrativo', 'Gestão de Fluxo de Caixa')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition text-center">
+                                ▶ Continuar Aula
+                            </button>
+                            <button onclick="showToast('Baixando material complementar em PDF...')" class="border border-slate-300 text-slate-700 font-medium py-2 px-4 rounded-xl text-xs hover:bg-slate-50 transition text-center">
+                                📁 Material Didático
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Concluído / Certificado -->
+                    <div class="bg-emerald-50/50 border border-emerald-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-emerald-600 text-white text-xs font-bold px-2.5 py-0.5 rounded-full">Concluído ✓</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Excel do Básico ao Impressionante</h3>
+                            <p class="text-slate-500 text-xs mt-1">Concluído em 12/Fev/2026 • Carga horária: 40h</p>
+                        </div>
+
+                        <div class="flex items-center">
+                            <button onclick="openCertificate('João Silva', 'Excel do Básico ao Impressionante', '40 horas')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition shadow-sm w-full md:w-auto">
+                                📜 Emitir Certificado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABA 5: SUPORTE & FAQ ================= -->
+        <section id="tab-suporte" class="tab-content hidden">
+            <div class="max-w-4xl mx-auto px-4 py-8">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Central de Atendimento & FAQ</h1>
+                    <p class="text-slate-600 text-sm">Tire suas dúvidas rapidamente ou converse com nosso atendimento.</p>
+                </div>
+
+                <!-- FAQ Accordion -->
+                <div class="space-y-4 mb-12">
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(1)" class="w-full text-left p-4 font-bold text-slate-800 hover:bg-slate-50 flex justify-between items-center text-sm sm:text-base">
+                            <span>Como funcionam os certificados de conclusão?</span>
+                            <span id="faq-icon-1" class="text-brand-600 font-bold">+</span>
+                        </button>
+                        <div id="faq-ans-1" class="hidden p-4 border-t border-slate-100 text-xs sm:text-sm text-slate-600 bg-slate-50 leading-relaxed">
+                            Todos os nossos certificados são válidos em todo o território nacional como cursos livres de qualificação profissional, podendo ser usados em currículos, horas complementares na faculdade e promoções de trabalho.
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(2)" class="w-full text-left p-4 font-bold text-slate-800 hover:bg-slate-50 flex justify-between items-center text-sm sm:text-base">
+                            <span>Preciso ter conhecimento prévio para iniciar?</span>
+                            <span id="faq-icon-2" class="text-brand-600 font-bold">+</span>
+                        </button>
+                        <div id="faq-ans-2" class="hidden p-4 border-t border-slate-100 text-xs sm:text-sm text-slate-600 bg-slate-50 leading-relaxed">
+                            Não! Nossos cursos são estruturados do nível básico até o avançado. Qualquer pessoa com dedicação pode acompanhar as aulas passo a passo.
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(3)" class="w-full text-left p-4 font-bold text-slate-800 hover:bg-slate-50 flex justify-between items-center text-sm sm:text-base">
+                            <span>Como funciona o suporte aos alunos?</span>
+                            <span id="faq-icon-3" class="text-brand-600 font-bold">+</span>
+                        </button>
+                        <div id="faq-ans-3" class="hidden p-4 border-t border-slate-100 text-xs sm:text-sm text-slate-600 bg-slate-50 leading-relaxed">
+                            Você pode tirar dúvidas diretamente abaixo da aula na comunidade de alunos, usar o assistente virtual Edu no canto da tela ou enviar uma mensagem em nosso chat interativo.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Rápido Interativo Integrado -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-md">
+                    <h3 class="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+                        💬 Atendimento Rápido em Tempo Real
+                    </h3>
+                    
+                    <div id="support-chat-box" class="h-48 overflow-y-auto border border-slate-200 rounded-xl p-4 mb-4 bg-slate-50 space-y-3 text-xs sm:text-sm">
+                        <div class="bg-brand-100 text-brand-900 p-3 rounded-lg max-w-[80%]">
+                            Olá! Sou o atendente virtual do suporte EduPro. Como posso ajudar você hoje?
+                        </div>
+                    </div>
+
+                    <form onsubmit="sendSupportMessage(event)" class="flex gap-2">
+                        <input type="text" id="support-input" placeholder="Digite sua mensagem de suporte..." class="flex-grow px-4 py-2 border border-slate-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" required>
+                        <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition">
+                            Enviar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+        <!-- Balão de Fala Edu -->
+        <div id="edu-bubble" class="bg-white border-2 border-brand-500 text-slate-800 p-3.5 rounded-2xl shadow-xl max-w-xs mb-2 text-xs relative animate-bounce-slow">
+            <button onclick="closeEduBubble()" class="absolute -top-2 -right-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-full w-5 h-5 flex items-center justify-center font-bold text-[10px]">✕</button>
+            <p id="edu-msg" class="font-medium">👋 Olá! Sou o <span class="font-bold text-brand-600">Edu</span>, seu assistente. Dúvida sobre qual curso escolher? Clique no teste!</p>
+        </div>
+
+        <!-- Botão/Mascote Edu -->
+        <button onclick="toggleEduBubble()" class="bg-gradient-to-tr from-brand-600 to-brand-500 hover:scale-105 transition-transform p-3 rounded-full shadow-2xl border-2 border-white flex items-center justify-center group relative" title="Falar com o Edu">
+            <span class="text-2xl">🤖</span>
+            <span class="absolute -top-1 -right-1 bg-amber-400 w-3 h-3 rounded-full border-2 border-white"></span>
+        </button>
+    </div>
+
+
+    <!-- MODAL QUIZ / TESTE DE PREFERÊNCIAS -->
+    <div id="quiz-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeQuiz()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">✕</button>
+            
+            <div id="quiz-step-1">
+                <span class="text-xs font-bold text-brand-600 uppercase">Pergunta 1 de 3</span>
+                <h3 class="text-xl font-extrabold text-slate-900 mt-1 mb-4">Qual é o seu principal objetivo no momento?</h3>
+                <div class="space-y-3">
+                    <button onclick="quizAnswer(1, 'tech')" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        🚀 Entrar na área de Tecnologia e Programação
+                    </button>
+                    <button onclick="quizAnswer(1, 'gestao')" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        📊 Trabalhar no setor Administrativo ou Financeiro
+                    </button>
+                    <button onclick="quizAnswer(1, 'industria')" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        ⚙️ Atuar em Logística, Indústria ou Operações
+                    </button>
+                </div>
+            </div>
+
+            <div id="quiz-step-2" class="hidden">
+                <span class="text-xs font-bold text-brand-600 uppercase">Pergunta 2 de 3</span>
+                <h3 class="text-xl font-extrabold text-slate-900 mt-1 mb-4">Quanto tempo você tem disponível para estudar por semana?</h3>
+                <div class="space-y-3">
+                    <button onclick="quizAnswer(2, 'pouco')" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        ⏱️ Até 3 horas por semana (Curso rápido)
+                    </button>
+                    <button onclick="quizAnswer(2, 'medio')" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        📚 De 4 a 8 horas por semana (Ritmo moderado)
+                    </button>
+                    <button onclick="quizAnswer(2, 'muito')" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        🔥 Mais de 10 horas por semana (Aceleração total)
+                    </button>
+                </div>
+            </div>
+
+            <div id="quiz-step-3" class="hidden">
+                <span class="text-xs font-bold text-brand-600 uppercase">Pergunta 3 de 3</span>
+                <h3 class="text-xl font-extrabold text-slate-900 mt-1 mb-4">Qual estilo de aprendizado você prefere?</h3>
+                <div class="space-y-3">
+                    <button onclick="quizFinish()" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        💻 Prática no computador e projetos simulados
+                    </button>
+                    <button onclick="quizFinish()" class="w-full text-left p-3.5 border border-slate-200 rounded-xl hover:border-brand-500 hover:bg-brand-50 transition font-medium text-xs sm:text-sm">
+                        📖 Resumos práticos, tabelas e metodologias
+                    </button>
+                </div>
+            </div>
+
+            <div id="quiz-result" class="hidden text-center">
+                <span class="text-4xl mb-2 block">🎉</span>
+                <h3 class="text-2xl font-extrabold text-slate-900 mb-2">Curso Ideal Encontrado!</h3>
+                <p class="text-xs sm:text-sm text-slate-600 mb-4">Com base nas suas respostas, recomendamos fortemente:</p>
+                
+                <div id="quiz-recommendation-card" class="bg-brand-50 border border-brand-200 p-4 rounded-2xl mb-6 text-left">
+                    <!-- Preenchido via JS -->
+                </div>
+
+                <button onclick="closeQuiz(); showTab('cursos');" class="bg-brand-600 hover:bg-brand-700 text-white font-bold w-full py-3 rounded-xl transition text-sm">
+                    Ver Curso no Catálogo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SIMULAÇÃO DE AULA -->
+    <div id="lesson-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl">
+            <div class="bg-slate-900 text-white p-4 flex justify-between items-center">
+                <h3 id="lesson-title" class="font-bold text-sm sm:text-base">Aula em Reprodução</h3>
+                <button onclick="closeLessonModal()" class="text-slate-400 hover:text-white font-bold">✕</button>
+            </div>
+            <div class="bg-black aspect-video flex items-center justify-center text-white relative">
+                <div class="text-center p-6">
+                    <span class="text-5xl mb-4 block">▶️</span>
+                    <p class="font-bold text-lg" id="lesson-subtitle">Carregando Player de Vídeo...</p>
+                    <p class="text-slate-400 text-xs mt-2">Simulador de ambiente virtual de aprendizagem EduPro</p>
+                </div>
+            </div>
+            <div class="p-4 bg-slate-50 flex justify-between items-center">
+                <button onclick="showToast('Progresso salvo!')" class="bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-emerald-700">
+                    ✓ Marcar como Concluída
+                </button>
+                <button onclick="closeLessonModal()" class="text-slate-600 hover:text-slate-900 text-xs font-semibold">
+                    Fechar Vídeo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CERTIFICADO -->
+    <div id="cert-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-8 shadow-2xl relative border-8 border-brand-900 text-center">
+            <button onclick="closeCertModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">✕</button>
+            
+            <div class="border-2 border-amber-500/40 p-6 rounded-xl">
+                <span class="text-3xl">📜</span>
+                <h2 class="text-xs tracking-widest uppercase font-bold text-slate-500 mt-2">Plataforma EduPro • Certificado Oficial</h2>
+                <h1 class="text-2xl font-extrabold text-brand-900 mt-4 mb-2">CERTIFICADO DE CONCLUSÃO</h1>
+                <p class="text-xs text-slate-600">Certificamos para os devidos fins que</p>
+                <p id="cert-student" class="text-xl font-bold text-slate-900 my-2 underline decoration-amber-500">João Silva</p>
+                <p class="text-xs text-slate-600">concluiu com êxito o curso profissionalizante de</p>
+                <p id="cert-course" class="text-lg font-extrabold text-brand-700 my-2">Excel do Básico ao Impressionante</p>
+                <p id="cert-hours" class="text-xs text-slate-500 mb-6">Com carga horária total de 40 horas aula.</p>
+
+                <div class="flex justify-between items-end text-[10px] text-slate-400 border-t pt-4">
+                    <div>
+                        <p class="font-mono">Código de Validação:</p>
+                        <p class="font-bold text-slate-600">EDUPRO-2026-99218</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-slate-700">EduPro Ensino Profissional</p>
+                        <p>Diretoria Acadêmica</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-center gap-3">
+                <button onclick="window.print()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-sm">
+                    🖨️ Imprimir / Baixar PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICAÇÃO -->
+    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl hidden z-50 flex items-center gap-2">
+        <span>ℹ️</span> <span id="toast-msg">Mensagem</span>
+    </div>
+
+    <footer class="bg-slate-900 text-slate-400 text-xs py-12 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <span class="text-lg font-bold text-white">Edu<span class="text-brand-500">Pro</span></span>
+                <p class="mt-2 text-slate-400 leading-relaxed">Qualificação profissional prática, acessível e alinhada com as exigências reais do mercado de trabalho contemporâneo.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3">Navegação</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="showTab('home')" class="hover:underline">Início</button></li>
+                    <li><button onclick="showTab('cursos')" class="hover:underline">Catálogo de Cursos</button></li>
+                    <li><button onclick="showTab('meus-cursos')" class="hover:underline">Painel do Aluno</button></li>
+                    <li><button onclick="showTab('sobre')" class="hover:underline">Sobre Nós</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3">Públicos</h4>
+                <ul class="space-y-2">
+                    <li>Estudantes e Jovens Aprendizes</li>
+                    <li>Trabalhadores e Profissionais</li>
+                    <li>Parcerias para Instituições</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3">Contato & Suporte</h4>
+                <p>suporte@edupro.com.br</p>
+                <p class="mt-1">0800 770 2026</p>
+                <p class="mt-2 text-slate-500">Atendimento de Segunda a Sexta, das 8h às 20h</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 border-t border-slate-800 pt-6 text-center text-slate-500">
+            © 2026 EduPro Cursos Profissionalizantes. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // --- BASE DE DADOS DE CURSOS ---
+        const coursesData = [
+            {
+                id: 1,
+                title: 'Desenvolvimento Web Frontend Profissional',
+                category: 'Tecnologia',
+                hours: '80h',
+                level: 'Iniciante ao Avançado',
+                desc: 'Aprenda HTML5, CSS3, Tailwind CSS e JavaScript criando projetos reais e modernos para o mercado.',
+                featured: true,
+                badge: 'Mais Popular'
+            },
+            {
+                id: 2,
+                title: 'Assistente Administrativo e Financeiro',
+                category: 'Gestão',
+                hours: '60h',
+                level: 'Iniciante',
+                desc: 'Domine rotinas administrativas, gestão de documentos, contas a pagar/receber e atendimento profissional.',
+                featured: true,
+                badge: 'Em Alta'
+            },
+            {
+                id: 3,
+                title: 'Excel do Básico ao Impressionante',
+                category: 'Tecnologia',
+                hours: '40h',
+                level: 'Todos os níveis',
+                desc: 'Fórmulas complexas, Procv, Tabela Dinâmica e criação de Dashboards visuais para o ambiente corporativo.',
+                featured: true,
+                badge: 'Essencial'
+            },
+            {
+                id: 4,
+                title: 'Gestão de Logística e Almoxarifado',
+                category: 'Indústria',
+                hours: '50h',
+                level: 'Intermediário',
+                desc: 'Controle de estoque, cadeia de suprimentos (Supply Chain) e operações de transporte de cargas.',
+                featured: false,
+                badge: 'Mercado'
+            },
+            {
+                id: 5,
+                title: 'Cuidador de Idosos e Primeiros Socorros',
+                category: 'Saúde',
+                hours: '70h',
+                level: 'Iniciante',
+                desc: 'Capacitação completa para atendimento humanizado, administração de rotinas e cuidados preventivos.',
+                featured: false,
+                badge: 'Alta Demanda'
+            },
+            {
+                id: 6,
+                title: 'Marketing Digital e Gestão de Redes Sociais',
+                category: 'Gestão',
+                hours: '45h',
+                level: 'Iniciante',
+                desc: 'Criação de conteúdo, anúncios no Meta Ads/Google Ads e estratégias de vendas online para negócios.',
+                featured: false,
+                badge: 'Novo'
+            }
+        ];
+
+        let currentCategory = 'all';
+        let quizCategorySelection = 'tech';
+
+        // --- INICIALIZAÇÃO DA PÁGINA ---
+        window.addEventListener('DOMContentLoaded', () => {
+            renderFeaturedCourses();
+            renderAllCourses();
+        });
+
+        // --- NAVEGAÇÃO DE ABAS SEM RECHARGING ---
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            if (targetTab) {
+                targetTab.classList.remove('hidden');
+            }
+
+            // Atualiza botões
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-50', 'text-brand-600');
+                btn.classList.add('text-slate-600');
+            });
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-brand-50', 'text-brand-600');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- RENDERIZAÇÃO DE CURSOS ---
+        function createCourseCard(c) {
+            return `
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-brand-50 text-brand-700 text-xs font-bold px-2.5 py-1 rounded-lg">${c.category}</span>
+                            <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">${c.badge}</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base mb-2">${c.title}</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">${c.desc}</p>
+                        <div class="flex items-center gap-4 text-xs text-slate-500 font-medium border-t pt-3">
+                            <span>⏱️ ${c.hours}</span>
+                            <span>🎯 ${c.level}</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-600">Gratuito para Alunos</span>
+                        <button onclick="showToast('Inscrição realizada! Verifique o Painel do Aluno.')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs transition">
+                            Matricular-se
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFeaturedCourses() {
+            const grid = document.getElementById('featured-courses-grid');
+            if (!grid) return;
+            const featured = coursesData.filter(c => c.featured);
+            grid.innerHTML = featured.map(createCourseCard).join('');
+        }
+
+        function renderAllCourses() {
+            const grid = document.getElementById('all-courses-grid');
+            if (!grid) return;
+
+            const searchVal = (document.getElementById('course-search')?.value || '').toLowerCase();
+            
+            const filtered = coursesData.filter(c => {
+                const matchCategory = currentCategory === 'all' || c.category === currentCategory;
+                const matchSearch = c.title.toLowerCase().includes(searchVal) || c.desc.toLowerCase().includes(searchVal);
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 text-sm">Nenhum curso encontrado para essa busca.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(createCourseCard).join('');
+        }
+
+        function setCategoryFilter(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('#category-filters button').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+            });
+            event.target.classList.add('bg-brand-600', 'text-white');
+            event.target.classList.remove('text-slate-600');
+            renderAllCourses();
+        }
+
+        function filterCourses() {
+            renderAllCourses();
+        }
+
+        // --- RECURSO: QUIZ DE PREFERÊNCIAS ---
+        function openQuiz() {
+            document.getElementById('quiz-modal').classList.remove('hidden');
+            document.getElementById('quiz-step-1').classList.remove('hidden');
+            document.getElementById('quiz-step-2').classList.add('hidden');
+            document.getElementById('quiz-step-3').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-modal').classList.add('hidden');
+        }
+
+        function quizAnswer(step, choice) {
+            if (step === 1) {
+                quizCategorySelection = choice;
+                document.getElementById('quiz-step-1').classList.add('hidden');
+                document.getElementById('quiz-step-2').classList.remove('hidden');
+            } else if (step === 2) {
+                document.getElementById('quiz-step-2').classList.add('hidden');
+                document.getElementById('quiz-step-3').classList.remove('hidden');
+            }
+        }
+
+        function quizFinish() {
+            document.getElementById('quiz-step-3').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+
+            let recommended = coursesData[0]; // fallback
+            if (quizCategorySelection === 'gestao') recommended = coursesData[1];
+            if (quizCategorySelection === 'industria') recommended = coursesData[3];
+
+            document.getElementById('quiz-recommendation-card').innerHTML = `
+                <span class="text-[10px] font-bold bg-brand-600 text-white px-2 py-0.5 rounded-md uppercase">${recommended.category}</span>
+                <h4 class="font-bold text-slate-900 text-base mt-2">${recommended.title}</h4>
+                <p class="text-xs text-slate-600 mt-1">${recommended.desc}</p>
+                <p class="text-xs font-semibold text-brand-700 mt-2">Duração recomendada: ${recommended.hours}</p>
+            `;
+        }
+
+        // --- RECURSO: ACESSIBILIDADE ---
+        let currentFontSize = 100;
+        function changeFontSize(delta) {
+            currentFontSize += delta * 10;
+            if (currentFontSize < 80) currentFontSize = 80;
+            if (currentFontSize > 140) currentFontSize = 140;
+            document.body.style.fontSize = `${currentFontSize}%`;
+            showToast(`Tamanho do texto: ${currentFontSize}%`);
+        }
+
+        function resetFontSize() {
+            currentFontSize = 100;
+            document.body.style.fontSize = '100%';
+            showToast('Tamanho do texto restaurado.');
+        }
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+            const isHc = document.body.classList.contains('high-contrast');
+            showToast(isHc ? 'Alto Contraste Ativado' : 'Alto Contraste Desativado');
+        }
+
+        // --- RECURSO: MASCOTE VIRTUAL "EDU" ---
+        const eduTips = [
+            "💡 Dica do Edu: Cursos com certificado de Excel aumentam suas chances de contratação em 40%!",
+            "🎯 Não sabe por onde começar? Clique no botão '🎯 Qual curso fazer?' no topo!",
+            "📚 Você sabia? Você pode pausar suas aulas e continuar de onde parou quando quiser.",
+            "🤝 Instituições de ensino podem solicitar parcerias na nossa aba 'Sobre Nós'."
+        ];
+        let tipIndex = 0;
+
+        function toggleEduBubble() {
+            const bubble = document.getElementById('edu-bubble');
+            if (bubble.classList.contains('hidden')) {
+                bubble.classList.remove('hidden');
+                tipIndex = (tipIndex + 1) % eduTips.length;
+                document.getElementById('edu-msg').innerText = eduTips[tipIndex];
+            } else {
+                bubble.classList.add('hidden');
+            }
+        }
+
+        function closeEduBubble() {
+            document.getElementById('edu-bubble').classList.add('hidden');
+        }
+
+        // --- MODAIS DE AULA E CERTIFICADO ---
+        function openLessonModal(title, subtitle) {
+            document.getElementById('lesson-title').innerText = title;
+            document.getElementById('lesson-subtitle').innerText = `Reproduzindo: ${subtitle}`;
+            document.getElementById('lesson-modal').classList.remove('hidden');
+        }
+
+        function closeLessonModal() {
+            document.getElementById('lesson-modal').classList.add('hidden');
+        }
+
+        function openCertificate(name, course, hours) {
+            document.getElementById('cert-student').innerText = name;
+            document.getElementById('cert-course').innerText = course;
+            document.getElementById('cert-hours').innerText = `Com carga horária total de ${hours} aula.`;
+            document.getElementById('cert-modal').classList.remove('hidden');
+        }
+
+        function closeCertModal() {
+            document.getElementById('cert-modal').classList.add('hidden');
+        }
+
+        // --- FAQ E CHAT ATENDIMENTO ---
+        function toggleFaq(id) {
+            const ans = document.getElementById(`faq-ans-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.innerText = '-';
+            } else {
+                ans.classList.add('hidden');
+                icon.innerText = '+';
+            }
+        }
+
+        function sendSupportMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('support-input');
+            const chatBox = document.getElementById('support-chat-box');
+            if (!input.value.trim()) return;
+
+            // User msg
+            const userDiv = document.createElement('div');
+            userDiv.className = 'bg-slate-200 text-slate-800 p-3 rounded-lg max-w-[80%] ml-auto text-right';
+            userDiv.innerText = input.value;
+            chatBox.appendChild(userDiv);
+
+            const userText = input.value;
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Bot response
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'bg-brand-100 text-brand-900 p-3 rounded-lg max-w-[80%]';
+                botDiv.innerText = `Obrigado por sua mensagem! Nossa equipe de atendimento analisou o termo "${userText.substring(0, 20)}..." e responderá no seu e-mail cadastrado em até 15 minutos.`;
+                chatBox.appendChild(botDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 800);
+        }
+
+        // --- UTILS: TOAST NOTIFICATION ---
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

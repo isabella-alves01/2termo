@@ -1,0 +1,52 @@
+
+.equipe1{
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+    list-style:none ;
+    margin: 0;
+   
+}
+
+.equipe2{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    list-style:none ;
+    margin: 0;
+}
+
+.equipe3{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    list-style:none ;
+    margin: 0;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
+    align-items: flex-start;
+}
+
+.equipe4{
+     display: flex;
+    align-items: flex-start;
+    align-items: center;
+    align-items: flex-end;
+}
+
+
+
+.cards{
+      display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+    list-style:none ;
+    margin: 0;
+   
+}
+
+
+
+

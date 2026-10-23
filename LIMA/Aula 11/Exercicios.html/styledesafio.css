@@ -1,0 +1,30 @@
+
+
+.grid-solucoes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 24px;                            
+  list-style: none;                    
+ }
+
+@media (max-width: 900px) {
+  .grid-solucoes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-solucoes {
+    grid-template-columns: 1fr;
+  }
+}
+-------------------------------------------------------------------------
+.grid-solucoes-autofit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  
+  gap: 24px;                                                   
+  list-style: none;                                           
+}
+
+
+/* R: Eu escolheria a primeira opção, pois ela e mais simples. */

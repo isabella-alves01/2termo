@@ -1,0 +1,100 @@
+/* Exercicio 1 */
+/* .grid-itens{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 43px;
+list-style: none;
+} */
+
+/* ------------------------------------------------------------------------------------ */
+
+/* Exercicio 2 */
+/* .grid-itens{
+display:grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 43px;
+list-style: none;
+} */
+
+/* -------------------------------------------------------------------------------------------- */
+
+/* Exercicio 3  */
+
+/* .grid-itens{
+display:grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 43px;
+list-style: none;
+} */
+
+/* Resposta: A coluna 2 ela aumenta de tamanho. */
+
+/* -------------------------------------------------------------------------------------- */
+
+/* Exercicio 4  */
+
+
+/* .grid-itens{
+display:grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+gap: 43px;
+list-style: none;
+}
+
+.grid-itens{
+display:grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 43px;
+list-style: none;
+} */
+
+/* -------------------------------------------------------------------------------------- */
+
+/* Exercicio 5  */
+
+
+/* .grid-itens{
+display:grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 43px;
+list-style: none;
+} */
+
+
+/* /Ceular/ */
+/* @media (max-width: 500px) {
+.grid-img {
+grid-template-columns:repeat(1, 1fr);
+}
+} */
+
+/* /Tablet/ */
+/* @media (max-width: 768px) {
+.grid-lista {
+grid-template-columns: repeat(2, 1fr);
+}
+} */
+
+/* /Computador/ */
+/* @media (min-width: 1024px) {
+.grid-lista {
+grid-template-columns: repeat(3, 1fr);
+}
+} */
+
+
+/* 
+------------------------------------------------------------------------------ */
+
+/* Exercicio 6  */
+/* 
+.grid-itens{
+display:grid;
+grid-template-columns: repeat( auto-fit, minmax(220px, 1fr));
+gap: 43px;
+list-style: none;
+} */
+
+/* comparação: Ela e automatica, quebrando sozinho*/
+
+

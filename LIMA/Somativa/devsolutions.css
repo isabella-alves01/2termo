@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, Helvetica, sans-serif; 
+    background-color: rgba(235, 232, 232, 0.788); 
+    margin: 0;
+    padding: 0;
+}
+header {
+    text-align: center;
+    background-color: rgba(33, 33, 143, 0.932);
+    padding: 20px;
+
+    h1 {
+        color: whitesmoke;
+    }
+    p {
+        color: whitesmoke;
+    }
+    nav a {
+        color: whitesmoke;
+        margin: 15px;
+    }
+}
+.Bemvindo {
+
+    article{
+        background-color: white;
+        padding: 20px;
+        margin: 15px;
+    }
+    h2 {
+        color:rgba(0, 0, 148, 0.932) ;
+        text-align: center;
+    }
+    img {
+    max-width: 100%;
+}
+}
+.Sobre {
+    h2 {
+        text-align: center;
+        color:rgba(0, 0, 148, 0.932) ;
+    }
+    article{
+        background-color: white;
+        margin: 10px;
+        padding: 20px;
+    }
+    h3 {
+        color:rgba(0, 0, 148, 0.932) ;
+    }
+}
+
+.NossosServiços{
+    h2 {
+        text-align: center;
+        color:rgba(0, 0, 148, 0.932) ;
+    }
+    background-color: white;
+        margin: 10px;
+        padding: 20px;
+    .Desenvolvimentoweb {
+        background-color: rgba(65, 102, 223, 0.623);
+        margin: 10px;
+        padding: 10px;
+        border: rgba(15, 15, 122, 0.308) 1px solid;
+    }
+    .Sistemas {
+        background-color: rgba(65, 102, 223, 0.623);
+        margin: 10px;
+        padding: 10px;
+        border: rgba(15, 15, 122, 0.308) 1px solid;
+    }
+    .Dados {
+        background-color: rgba(65, 102, 223, 0.623);
+        margin: 10px;
+        padding: 10px;
+        border: rgba(15, 15, 122, 0.308) 1px solid;
+    }
+    .Consultoria {
+        background-color: rgba(65, 102, 223, 0.623);
+        margin: 10px;
+        padding: 10px;
+        border: rgba(15, 15, 122, 0.308) 1px solid;
+    }
+}
+
+.equipes {
+        h2 {
+        text-align: center;
+        color:rgba(4, 4, 105, 0.932) ;
+        }
+        text-align: center;
+        background-color: white;
+        margin: 10px;
+        padding: 10px;
+.Ana{
+    background-color: rgba(181, 174, 207, 0.678);
+    padding: 20px;
+    border: rgba(71, 70, 70, 0.349) 1px solid;
+    }
+.Carlos{
+    background-color:rgba(181, 174, 207, 0.678);
+    padding: 20px;
+    border: rgba(71, 70, 70, 0.349) 1px solid;
+    }
+.Mariana{
+    background-color:rgba(181, 174, 207, 0.678)
+    ;
+    padding: 20px;
+    border: rgba(71, 70, 70, 0.349) 1px solid;
+    }
+}
+
+.projetos {
+    background-color: rgb(255, 7, 7);
+    margin: 10px;
+    padding: 20px;
+    h2 {
+        text-align: center;
+        color:rgba(13, 13, 109, 0.932) ;
+    }
+.vendas{
+    h3{
+        color:rgba(13, 13, 109, 0.932) ;
+    }
+    background-color: rgba(221, 215, 215, 0.678);
+    border: rgba(128, 128, 128, 0.349) 1px solid;
+    padding: 15px;
+    
+    }
+.app{
+    h3{
+        color:rgba(13, 13, 109, 0.932) ;
+    }
+    background-color: rgba(221, 215, 215, 0.678);
+    border: rgba(128, 128, 128, 0.349) 1px solid;
+    padding: 15px;
+    
+    }
+.site{
+    h3{
+        color:rgba(13, 13, 109, 0.932) ;
+    }
+    background-color: rgba(221, 215, 215, 0.678);
+    border: rgba(128, 128, 128, 0.349) 1px solid;
+    padding: 15px;
+    
+    }
+}
+
+.contato {
+    background-color: white;
+    margin: 10px;
+    padding: 20px;
+    .botao{
+        background-color: rgba(83, 83, 170, 0.993);
+        color: white;
+        padding: 6px;
+    }
+}
+.rodape {
+    background-color: rgba(47, 47, 243, 0.932);
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
