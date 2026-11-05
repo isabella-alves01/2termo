@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nome": "Isabella",
+    "idade": 16,
+    "funcao": "Operaria"
+  },
+  {
+    "id": 2,
+    "nome": "Livia",
+    "idade": 16,
+    "funcao": "Faxineira"
+  },
+  {
+    "id": 3,
+    "nome": "Gabrielli",
+    "idade": 16,
+    "funcao": "Operaria"
+  },
+  {
+    "id": 4,
+    "nome": "Juliana",
+    "idade": 28,
+    "funcao": "Chefe de producao"
+  }
+]
