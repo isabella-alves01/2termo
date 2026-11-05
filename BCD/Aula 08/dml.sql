@@ -241,3 +241,8 @@ INSERT INTO produto (nome,preco,ativo,id_categoria) VALUES
 
 
 
+
+
+
+
+

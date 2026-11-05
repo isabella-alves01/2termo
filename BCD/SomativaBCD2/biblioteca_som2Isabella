@@ -1,0 +1,337 @@
+-- Active: 1788519384518@@127.0.0.1@3306@biblioteca_som2isabella01
+CREATE DATABASE IF NOT EXISTS biblioteca_som2Isabella01;
+
+USE biblioteca_som2Isabella01;
+
+
+CREATE TABLE Usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    telefone VARCHAR(20),
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE Livro (
+    id_livro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    autor VARCHAR(120) NOT NULL,
+    isbn CHAR(13) NOT NULL UNIQUE,
+    ano_publicacao INT NULL,
+    quantidade_disponivel INT DEFAULT 0 CHECK (quantidade_disponivel >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS Emprestimo (
+    id_emprestimo INT AUTO_INCREMENT,
+    data_emprestimo DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_prevista DATE NOT NULL,
+    data_devolucao DATE NULL,
+    status_emprestimo VARCHAR(20) DEFAULT 'ABERTO',
+    id_usuario INT NOT NULL,
+    id_livro INT NOT NULL,
+    CONSTRAINT PK_EMPRESTIMO PRIMARY KEY (id_emprestimo),
+    CONSTRAINT CK_STATUS_EMPRESTIMO CHECK (status_emprestimo IN ('ABERTO', 'DEVOLVIDO', 'ATRASADO')),
+    CONSTRAINT FK_EMPRESTIMO_USUARIO FOREIGN KEY (id_usuario) REFERENCES USUARIO (id_usuario) ON DELETE RESTRICT,
+    CONSTRAINT FK_EMPRESTIMO_LIVRO FOREIGN KEY (id_livro) REFERENCES LIVRO (id_livro) ON DELETE RESTRICT
+);
+
+
+CREATE TABLE Administracao (
+    id_administracao INT AUTO_INCREMENT PRIMARY KEY,
+    nome_responsavel VARCHAR(100) NOT NULL,
+    email_responsavel VARCHAR(120) NOT NULL UNIQUE,
+    telefone_reponsavel VARCHAR(20),
+    horario_de_trabalho TIME NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE Fornecedores (
+    id_fornecedor INT AUTO_INCREMENT PRIMARY KEY,
+    nome_fornecedor VARCHAR(100) NOT NULL,
+    email_fornecedor VARCHAR(120) NOT NULL UNIQUE,
+    telefone_fornecedor VARCHAR(20),
+    linhas_de_livros_fornecidas VARCHAR(500) NOT NULL,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+
+ALTER TABLE Livro ADD COLUMN editora VARCHAR(100) NULL;
+
+
+INSERT INTO Usuario( id_usuario, nome, email, telefone, ativo ) VALUES
+('Juliana Medeiros','Juliana@email.com','1999934591',TRUE),
+('Beatriz Raissa','beatriz@email.com','1992399991',TRUE),
+('Isabella Alves','isabella@email.com',NULL,TRUE),
+('Francisco Magri','chico@email.com','1999999994',TRUE);
+
+INSERT INTO Livro (titulo, autor, isbn, ano_publicacao, quantidade_disponivel ) VALUES
+('A vida de Anny','George Orwell','9788535914849',1949,10),
+('Cem Anos de Solidão','Gabriel García Márquez','9788501012074',1967,5),
+('O Pequeno Príncipe','Antoine de Saint-Exupéry','9788595081512',1943,12),
+('O Grande Gatsby','F. Scott Fitzgerald','9788535919318',1925,23),
+('Moby Dick','Herman Melville','9788573264173',1851,8),
+('Ulysses','James Joyce','9788535919615',1922,2);
+
+INSERT INTO Livro (titulo, autor, isbn, ano_publicacao, quantidade_disponivel ) VALUES
+('Mil anos passados','Carolline Ferreira','9729035914849',2023,10),
+('A vida passada','Ana Santos','9788535914789',2025,30);
+
+
+
+ INSERT INTO Emprestimo (data_prevista, id_usuario, id_livro) VALUES
+ ('2026-12-15', '1', '1'),
+ ('2027-01-15', '2', '3'),
+ ('2027-02-20', '3', '4');
+
+
+SELECT * FROM Usuario WHERE id_usuario = 2;
+
+UPDATE USUARIO 
+SET telefone = '19955559444' 
+WHERE id_usuario = 2;
+
+
+UPDATE Livro 
+SET quantidade_disponivel = quantidade_disponivel + 2 
+WHERE ano_publicacao >= 2020;
+
+SELECT * FROM Livro
+
+INSERT INTO Usuario (nome, email, telefone,) VALUES ('junior', 'junior@email.com', '19998723900');
+
+DELETE FROM Usuario WHERE email = 'junior@email.com';
+
+--    EXPLICAÇÃO: Falhou
+--    Isso ocorre porque definimos a chave estrangeira (FK)
+--    Como o usuário com id_usuario = 1 possui registros vinculados na tabela Emprestimo, 
+--    o MySQL bloqueia a exclusão
+
+
+SELECT titulo, autor, quantidade_disponivel 
+FROM Livro;
+
+SELECT * FROM Livro 
+WHERE quantidade_disponivel > 2 
+ORDER BY quantidade_disponivel DESC;
+
+SELECT * FROM Livro
+WHERE titulo LIKE '%Pequeno%';
+
+SELECT * FROM Livro 
+WHERE ano_publicacao BETWEEN 2015 AND 2025;
+
+SELECT 
+    COUNT(*) AS total_livros,
+    SUM(quantidade_disponivel) AS total_exemplares,
+    AVG(quantidade_disponivel) AS media_exemplares,
+    MIN(quantidade_disponivel) AS menor_estoque,
+    MAX(quantidade_disponivel) AS maior_estoque
+FROM Livro;
+
+
+SELECT 
+    E.id_emprestimo,
+    U.nome AS usuario,
+    L.titulo AS livro,
+    E.data_emprestimo,
+    E.status_emprestimo
+FROM Emprestimo E
+INNER JOIN Usuario U ON E.id_usuario = U.id_usuario
+INNER JOIN Livro L ON E.id_livro = L.id_livro;
+
+
+SELECT 
+    E.id_emprestimo,
+    U.nome AS usuario,
+    L.titulo AS livro,
+    E.data_prevista,
+    E.status_emprestimo
+FROM EMPRESTIMO E
+INNER JOIN USUARIO U ON E.id_usuario = U.id_usuario
+INNER JOIN LIVRO L ON E.id_livro = L.id_livro
+WHERE E.status_emprestimo = 'ABERTO';
+
+
+SELECT 
+    U.nome AS usuario,
+    COUNT(E.id_emprestimo) AS quantidade_emprestimos
+FROM Emprestimo e
+INNER JOIN Usuario U ON E.id_usuario = U.id_usuario
+GROUP BY U.id_usuario, U.nome
+ORDER BY quantidade_emprestimos DESC;
+
+SELECT 
+    U.nome AS usuario,
+    COUNT(E.id_emprestimo) AS total_emprestimos
+FROM USUARIO U
+LEFT JOIN EMPRESTIMO E ON U.id_usuario = E.id_usuario
+GROUP BY U.id_usuario, U.nome;
+
+
+START TRANSACTION;
+
+INSERT INTO Emprestimo (data_prevista, id_usuario, id_livro) 
+VALUES ('2027-02-20', '1', '2');
+
+UPDATE Livro
+SET quantidade_disponivel = quantidade_disponivel - 1 
+WHERE id_livro = 2;
+
+
+SELECT * FROM Emprestimo WHERE id_usuario = 4 AND id_livro = 2;
+SELECT id_livro, titulo, quantidade_disponivel FROM LIVRO WHERE id_livro = 2;
+
+
+START TRANSACTION;
+
+
+UPDATE LIVRO 
+SET quantidade_disponivel = 99 
+WHERE id_livro = 1;
+
+SELECT id_livro, titulo, quantidade_disponivel FROM LIVRO WHERE id_livro = 1;
+
+START TRANSACTION;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
