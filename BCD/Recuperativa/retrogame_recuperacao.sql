@@ -9,7 +9,7 @@ CREATE TABLE CLIENTE (
     id_cliente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(120) NOT NULL UNIQUE,
-    telefone VARCHAR(20),
+    telefone VARCHAR(21),
     ativo BOOLEAN DEFAULT TRUE
 );
 
