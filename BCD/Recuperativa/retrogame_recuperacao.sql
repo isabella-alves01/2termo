@@ -1,6 +1,6 @@
 -- Active: 1794488659279@@127.0.0.1@3308@retrogame_recuperacao
 
--- 1. Criar e selecionar o banco
+-- 1.
 CREATE DATABASE retrogame_recuperacao;
 USE retrogame_recuperacao;
 DROP TABLE PLATAFORMA;
