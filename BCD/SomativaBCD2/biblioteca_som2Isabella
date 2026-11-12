@@ -1,8 +1,8 @@
--- Active: 1788519384518@@127.0.0.1@3306@biblioteca_som2isabella01
+-- Active: 1794488844343@@127.0.0.1@3308@biblioteca_senai_isabella
 CREATE DATABASE IF NOT EXISTS biblioteca_som2Isabella01;
 
 USE biblioteca_som2Isabella01;
-
+DROP TABLE Livro;
 
 CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -192,6 +192,7 @@ WHERE id_livro = 1;
 SELECT id_livro, titulo, quantidade_disponivel FROM LIVRO WHERE id_livro = 1;
 
 START TRANSACTION;
+
 
 
 
