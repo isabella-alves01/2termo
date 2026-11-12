@@ -106,13 +106,6 @@ WHERE ano_lancamento >= 2000;
 INSERT INTO CLIENTE (nome, email, telefone) VALUES ('Cliente Ana', 'ana@email.com', '11900067900');
 DELETE FROM CLIENTE WHERE email = 'ana@email.com';
 
-
-/*
-  Resultado:
-  O MySQL bloqueia a exclusão exibindo erro de chave estrangeira (Error Code: 1451 - Cannot delete or update a parent row).
-  Isso acontece porque a chave estrangeira FK_locacao_cliente possui ON DELETE RESTRICT, impedindo a exclusão de clientes que possuem histórico de locação.
-*/
-
 -- 13.
 SELECT titulo, ano_lancamento, quantidade_disponivel FROM JOGO;
 
@@ -120,7 +113,7 @@ SELECT titulo, ano_lancamento, quantidade_disponivel FROM JOGO;
 SELECT titulo, quantidade_disponivel FROM JOGO WHERE quantidade_disponivel > 2 ORDER BY quantidade_disponivel DESC;
 
 -- 15.
-SELECT * FROM JOGO WHERE titulo LIKE '%Mario%';
+SELECT * FROM JOGO WHERE titulo LIKE '%mario%';
 
 -- 16.
 SELECT titulo, ano_lancamento FROM JOGO WHERE ano_lancamento BETWEEN 1990 AND 2005;
@@ -189,11 +182,6 @@ START TRANSACTION;
     SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo = 3;
 COMMIT;
 
-/*
-  Como evitar registrar locação sem unidade disponível:
-  Utilizar a condição WHERE quantidade_disponivel > 0 no UPDATE dentro da transação junto com a restrição CHECK (quantidade_disponivel >= 0) na tabela JOGO, além de validar o estoque na aplicação antes de inserir.
-*/
-
 -- 23.
 START TRANSACTION;
     SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo = 4;
@@ -222,16 +210,4 @@ START TRANSACTION;
 COMMIT;
 SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo IN (1, 5);
 
--- 25.
-START TRANSACTION;
-    SELECT * FROM LOCACAO WHERE id_locacao = 1 AND status_locacao = 'ABERTA';
-    
-    UPDATE LOCACAO
-    SET status_locacao = 'DEVOLVIDA', data_devolucao = CURDATE()
-    WHERE id_locacao = 1;
-    
-    UPDATE JOGO
-    SET quantidade_disponivel = quantidade_disponivel + 1
-    WHERE id_jogo = 1;
-COMMIT;
 
