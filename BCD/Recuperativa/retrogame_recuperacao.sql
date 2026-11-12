@@ -1,126 +1,237 @@
+-- Active: 1794488659279@@127.0.0.1@3308@retrogame_recuperacao
 
-    create database if not exists retrogame_recuperacao;
-    use retrogame_recuperacao;
+-- 1. Criar e selecionar o banco
+CREATE DATABASE retrogame_recuperacao;
+USE retrogame_recuperacao;
+DROP TABLE PLATAFORMA;
+-- 2.
+CREATE TABLE CLIENTE (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    telefone VARCHAR(20),
+    ativo BOOLEAN DEFAULT TRUE
+);
 
-    -- 2. Crie os campos especificados e garanta obrigatoriedade, e-mail
-    -- ,exclusivo e ativo por padrão
-
-    CREATE TABLE CLIENTE (
-    ID_USUARIO INT AUTO_INCREMENT PRIMARY KEY,
-    NOME VARCHAR(100) NOT NULL,
-    EMAIL VARCHAR(120) NOT NULL UNIQUE,
-    TELEFONE VARCHAR(20),
-    ATIVO BOOLEAN DEFAULT TRUE
-    );
-
-
--- 3. Crie duas tabelas com suas chaves e valores exclusivos. 
--- Esssas tabelas serão referencias por JOGO.
+-- 3.
+CREATE TABLE PLATAFORMA (
+    id_plataforma INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(80) NOT NULL UNIQUE
+);
 
 CREATE TABLE CATEGORIA (
-    ID_CATEGORIA INT AUTO_INCREMENT PRIMARY KEY,
-    NOME_CATEGORIA VARCHAR(100) NOT NULL UNIQUE,
-    ANO_CATEGORIA DATE NOT NULL
-    
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(80) NOT NULL UNIQUE
 );
 
-CREATE TABLE PLATAFORMA (
-    ID_PLATAFORMA INT AUTO_INCREMENT PRIMARY KEY,
-    NOME_PLATAFORMA VARCHAR(60) NOT NULL UNIQUE,
-    ANO_PLATAFORMA DATE NOT NULL,
-);
-
--- 4. Crie a tabela com pK, código exclusivo,
---  estoque não negativo e FKs para plataformas e categorias 
-
-ALTER TABLE JOGO
+-- 4.
 CREATE TABLE JOGO (
-    ID_JOGO INT AUTO_INCREMENT PRIMARY KEY,
-    CODIGO VARCHAR(30) NOT NULL UNIQUE,
-    NOME_JOGO VARCHAR(100) NOT NULL,
-    ESTOQUE INT NOT NULL DEFAULT 0,
-    ID_PLATAFORMA INT NOT NULL,
-    ID_CATEGORIA INT NOT NULL,
-    CONSTRAINT CHK_JOGO_ESTOQUE CHECK (ESTOQUE >= 0),
-    CONSTRAINT FK_JOGO_PLATAFORMA
-    FOREIGN KEY (ID_PLATAFORMA) REFERENCES PLATAFORMA (ID_PLATAFORMA),
-    CONSTRAINT FK_JOGO_CATEGORIA
-    FOREIGN KEY (ID_CATEGORIA) REFERENCES CATEGORIA (ID_CATEGORIA)
+    id_jogo INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(150) NOT NULL,
+    codigo VARCHAR(15) NOT NULL UNIQUE,
+    ano_lancamento INT NOT NULL,
+    quantidade_disponivel INT DEFAULT 0 CHECK (quantidade_disponivel >= 0),
+    id_plataforma INT NOT NULL,
+    id_categoria INT NOT NULL,
+    CONSTRAINT FK_jogo_plataforma FOREIGN KEY (id_plataforma) REFERENCES PLATAFORMA(id_plataforma),
+    CONSTRAINT FK_jogo_categoria FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id_categoria)
 );
 
-
--- 5.  Tabela LOCACAO Crie PK, FKs obrigatorias , defaults e check do status. preserve 
--- os historicos contra exclusões 
-
+-- 5.
 CREATE TABLE LOCACAO (
-ID_LOCACAO INT AUTO_INCREMENT PRIMARY KEY,
-DATA_EMPRESTIMO DATETIME DEFAULT CURRENT_TIMESTAMP,
-CONSTRAINT CK_STATUS_EMPRESTIMO CHECK (status_emprestimo IN ('ABERTO', 'DEVOLVIDO', 'ATRASADO')),
-CONSTRAINT FK_NOME_CLIENTE,
-CONSTRAINT FK_NOME_JOGO,
-CONSTRAINT FK_CODIGO_JOGO,
-)
+    id_locacao INT PRIMARY KEY AUTO_INCREMENT,
+    data_retirada DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_prevista DATE NOT NULL,
+    data_devolucao DATE,
+    status_locacao VARCHAR(20) DEFAULT 'ABERTA' CHECK (status_locacao IN ('ABERTA', 'DEVOLVIDA', 'ATRASADA')),
+    id_cliente INT NOT NULL,
+    id_jogo INT NOT NULL,
+    CONSTRAINT FK_locacao_cliente FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id_cliente) ON DELETE RESTRICT,
+    CONSTRAINT FK_locacao_jogo FOREIGN KEY (id_jogo) REFERENCES JOGO(id_jogo) ON DELETE RESTRICT
+);
 
--- 6. Acrescente desenvolvedora VARCHAR(100) a tabela JOGO usando ALTER TABLE 
-
--- FEITO!
-
--- 7. Insira pelo menos 4 clientes. Um deles deve ter telefone NULL
-
-INSERT INTO CLIENTE ( ID_USUARIO, NOME, EMAIL, TELEFONE, ATIVO ) VALUES
-('Juliana Medeiros','Juliana@email.com','1999934591',TRUE),
-('joao fonseca','joao@email.com','1992399991',TRUE),
-('Isabella Alves','isabella@email.com',NULL,TRUE),
-('Rafaela','rafaela@email.com','1999999994',TRUE);
+-- 6.
+ALTER TABLE JOGO ADD COLUMN desenvolvedora VARCHAR(100);
 
 
--- 8.Inserir plataformas, categorias e jogos 
-INSERT INTO PLATAFORMA (ID_PLATAFORMA, NOME_PLATAFORMA, ANO_PLATAFORMA) VALUES
-(1,"Steam",2003),
-(2,"GOG.com",2018),
+-- 7.
+INSERT INTO CLIENTE (nome, email, telefone, ativo) VALUES
+('Juliana Santos', 'juliana@email.com', '19991235678', TRUE),
+('Antonio Ferreira', 'antonio@email.com', NULL, TRUE),
+('Eliane Pimentel', 'Eliane@email.com', '19987629021', TRUE),
+('Caroline Virginia', 'Caroline@email.com', '16789887766', TRUE);
 
-INSERT CATEGORIAS (ID_CATEGORIA, NOME_CATEGORIA) VALUES
-(1,"Ação"),
-(2,"Aventura"),
+-- 8.
 
-INSERT INTO JOGO (ID_JOGO, CODIGO, NOME_JOGO, ESTOQUE) VALUES
-(1,2310,pou,1000),
-(2,2323,jogo das princesas,99),
-(3,2344,Fortnite,234),
-(4,2336,Forza Horizon,90),
-(5,2435,Elden Ring,34),
+INSERT INTO PLATAFORMA (nome) VALUES
+('Nintendo'), 
+('PlayStation'),
+('Xbox');
 
--- 10. Localize com cliente com SELECT e modifique seu telefone 
--- com update e where
+INSERT INTO CATEGORIA (descricao) VALUES 
+('RPG'), 
+('Simulação');
 
-FROM * SELECT CLIENTE;
+INSERT INTO JOGO (titulo, codigo, ano_lancamento, quantidade_disponivel, id_plataforma, id_categoria, desenvolvedora) VALUES
+('GTA V', 'jogo1', 2013, 5, 2, 1, 'Rockstar Games'),
+('Mario', 'jogo2', 1990, 4, 1, 1, 'Nintendo'),
+('FIFA 19', 'jogo3', 2018, 3, 3, 2, 'EA Sports'),
+('The Sims 1', 'jogo4', 2000, 2, 1, 2, 'Maxis'),
+('Mortal Kombat', 'jogo5', 1992, 6, 3, 1, 'Midway'),
+('The Last of Us', 'jogo6', 2013, 4, 2, 1, 'Naughty Dog');
 
-UPDATE USUARIO 
-SET telefone = '19955559444' 
-WHERE id_usuario = 2;
+-- 9.
+INSERT INTO LOCACAO (data_retirada, data_prevista, data_devolucao, status_locacao, id_cliente, id_jogo) VALUES
+(CURRENT_TIMESTAMP, '2026-11-5', NULL, 'ABERTA', 1, 1),
+(CURRENT_TIMESTAMP, '2026-11-10', NULL, 'ABERTA', 2, 2),
+(CURRENT_TIMESTAMP, '2026-11-25', NULL, 'ABERTA', 3, 6);
+
+UPDATE JOGO
+SET quantidade_disponivel = quantidade_disponivel - 1
+WHERE id_jogo IN (1, 2, 6);
+
+-- 10.
+SELECT id_cliente, nome, telefone FROM CLIENTE WHERE id_cliente = 2;
+
+UPDATE CLIENTE
+SET telefone = '19988881111'
+WHERE id_cliente = 2;
+
+-- 11.
+UPDATE JOGO
+SET quantidade_disponivel = quantidade_disponivel + 2
+WHERE ano_lancamento >= 2000;
+
+-- 12.
+INSERT INTO CLIENTE (nome, email, telefone) VALUES ('Cliente Ana', 'ana@email.com', '11900067900');
+DELETE FROM CLIENTE WHERE email = 'ana@email.com';
 
 
--- 11. Acrescente 2 unidades ao estoque de cada jogo lançado a partir  do ano 2000
+/*
+  Resultado:
+  O MySQL bloqueia a exclusão exibindo erro de chave estrangeira (Error Code: 1451 - Cannot delete or update a parent row).
+  Isso acontece porque a chave estrangeira FK_locacao_cliente possui ON DELETE RESTRICT, impedindo a exclusão de clientes que possuem histórico de locação.
+*/
+
+-- 13.
+SELECT titulo, ano_lancamento, quantidade_disponivel FROM JOGO;
+
+-- 14.
+SELECT titulo, quantidade_disponivel FROM JOGO WHERE quantidade_disponivel > 2 ORDER BY quantidade_disponivel DESC;
+
+-- 15.
+SELECT * FROM JOGO WHERE titulo LIKE '%Mario%';
+
+-- 16.
+SELECT titulo, ano_lancamento FROM JOGO WHERE ano_lancamento BETWEEN 1990 AND 2005;
+
+-- 17.
+SELECT 
+    COUNT(*) AS total_jogos,
+    SUM(quantidade_disponivel) AS total_estoque,
+    AVG(quantidade_disponivel) AS media_estoque,
+    MIN(quantidade_disponivel) AS menor_estoque,
+    MAX(quantidade_disponivel) AS maior_estoque
+FROM JOGO;
+
+-- 18.
+SELECT 
+    l.id_locacao,
+    c.nome AS cliente,
+    j.titulo AS jogo,
+    l.data_retirada,
+    l.status_locacao
+FROM LOCACAO l
+INNER JOIN CLIENTE c ON l.id_cliente = c.id_cliente
+INNER JOIN JOGO j ON l.id_jogo = j.id_jogo;
+
+-- 19.
+SELECT 
+    l.id_locacao,
+    c.nome AS cliente,
+    j.titulo AS jogo,
+    l.data_retirada,
+    l.status_locacao
+FROM LOCACAO l
+INNER JOIN CLIENTE c ON l.id_cliente = c.id_cliente
+INNER JOIN JOGO j ON l.id_jogo = j.id_jogo
+WHERE l.status_locacao = 'ABERTA';
+
+-- 20.
+SELECT 
+    c.nome AS cliente,
+    COUNT(l.id_locacao) AS quantidade_locacoes
+FROM CLIENTE c
+INNER JOIN LOCACAO l ON c.id_cliente = l.id_cliente
+GROUP BY c.id_cliente, c.nome
+ORDER BY quantidade_locacoes DESC;
+
+-- 21.
+SELECT 
+    c.nome AS cliente,
+    COUNT(l.id_locacao) AS quantidade_locacoes
+FROM CLIENTE c
+LEFT JOIN LOCACAO l ON c.id_cliente = l.id_cliente
+GROUP BY c.id_cliente, c.nome;
 
 
 
 
--- 12.DELETE e protecao do historico
+-- 22.
+START TRANSACTION;
+    INSERT INTO LOCACAO (data_prevista, status_locacao, id_cliente, id_jogo) VALUES ('2026-11-30', 'ABERTA', 4, 3);
+    
+    UPDATE JOGO
+    SET quantidade_disponivel = quantidade_disponivel - 1
+    WHERE id_jogo = 3 AND quantidade_disponivel > 0;
+    
+    SELECT * FROM LOCACAO WHERE id_cliente = 4;
+    SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo = 3;
+COMMIT;
 
+/*
+  Como evitar registrar locação sem unidade disponível:
+  Utilizar a condição WHERE quantidade_disponivel > 0 no UPDATE dentro da transação junto com a restrição CHECK (quantidade_disponivel >= 0) na tabela JOGO, além de validar o estoque na aplicação antes de inserir.
+*/
 
+-- 23.
+START TRANSACTION;
+    SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo = 4;
+    
+    UPDATE JOGO
+    SET quantidade_disponivel = 50
+    WHERE id_jogo = 4;
+    
+    SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo = 4;
+ROLLBACK;
+SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo = 4;
 
+-- 24.
+START TRANSACTION;
+    UPDATE JOGO
+    SET quantidade_disponivel = quantidade_disponivel + 1
+    WHERE id_jogo = 1;
+    
+    SAVEPOINT sp_primeiro_jogo;
+    
+    UPDATE JOGO
+    SET quantidade_disponivel = quantidade_disponivel + 1
+    WHERE id_jogo = 5;
+    
+    ROLLBACK TO SAVEPOINT sp_primeiro_jogo;
+COMMIT;
+SELECT id_jogo, titulo, quantidade_disponivel FROM JOGO WHERE id_jogo IN (1, 5);
 
--- 13.SELECT basico 
+-- 25.
+START TRANSACTION;
+    SELECT * FROM LOCACAO WHERE id_locacao = 1 AND status_locacao = 'ABERTA';
+    
+    UPDATE LOCACAO
+    SET status_locacao = 'DEVOLVIDA', data_devolucao = CURDATE()
+    WHERE id_locacao = 1;
+    
+    UPDATE JOGO
+    SET quantidade_disponivel = quantidade_disponivel + 1
+    WHERE id_jogo = 1;
+COMMIT;
 
-SELECT titulo, ano_lancamento, quantidade_disponivel 
-FROM  JOGOS;
-
-
-14.Mostre jogos com estoque maior que 2, do maior para o menor estoque.
-
-
-SELECT * FROM JOGOS 
-WHERE quantidade_disponivel > 2 
-ORDER BY quantidade_disponivel DESC;
-
--- 15.Pesquise jogos cujo titulo contenha uma palavra escolhida por voce 
