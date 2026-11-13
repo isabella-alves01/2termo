@@ -12,10 +12,11 @@ body {
 
 .Titulo-secao {
     display: flex;
+    background-image: linear-gradient(to left, #dedede, #f558ce);
 }
 
 .Titulo span {
-    color: #dedede;  
+    color: #c5c5c5;  
 }
 
 .Titulo a {
@@ -63,7 +64,7 @@ img {
     width: 60%;
     letter-spacing: 2px;
     line-height: 1.6;
-    border: 1px solid #dedede;
+    border: 1px solid #dd81e0;
     padding: 15px;
 
 }
@@ -78,7 +79,7 @@ img {
 .Galeria {
     margin: 0;
     padding: 24px;
-    background-color: #dedede;
+    background-color: #f2a8f5;
 }
 
 .Galeria-img  img{
@@ -98,7 +99,7 @@ img {
     background-color: #db004d;
     transform: scale(1.1);
     box-shadow: 0px 0px 20px #db004d;
-    transform: translateX(120px) rotate(-10deg);
+    transform: translateX(120px) rotate(-200deg);
 }
 
 .Galeria ul{
@@ -106,8 +107,35 @@ img {
     list-style: none;
 }
 
+.imagem-img{
+    display: flex;
+    object-fit: cover;
+    object-position: right;
+}
+
+.Cartoes{
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s , box-shadow 0.25s;
+}
+
+.Cartoes:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 34px -14px rgba(0,0,0,0.4);
+}
+
+.Cartoes-corpo {
+    overflow: hidden;
+}
+
+.Cartoes-corpo img {
+    transition: transform 0.4s;
+}
+
+
 @media (max-width: 400px) {
     .conteudo-img {
-        grid-template-columns: repeat(auto-fit, minmax(220px));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 3fr));
+        grid-template-columns: repeat(2,1fr);
     }
 }
