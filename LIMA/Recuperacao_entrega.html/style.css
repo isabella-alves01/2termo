@@ -66,11 +66,7 @@ nav a {
 
 .HTML, .conteudo-javaScript, .conteudo-python,
 .brModelo, .conteudo-MYSQL, .conteudo-java {
-    background-color: #ffffff;
-    border: 1px solid #a05713;
-    border-radius: 8px;
-    padding: 20px;
-
+    background-color: #f3d687;
 
 }
 
