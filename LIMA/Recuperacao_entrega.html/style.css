@@ -14,7 +14,7 @@ body {
     border: 1px solid #a05713;
     background-color: #f7da9bf1;
 }
-
+    
 .inicio{
     display: flex;
     justify-content: center;
@@ -80,7 +80,7 @@ nav a {
 
 
 .progamacao {
-    background-color: #ffffff;
+    background-color: #f7cf61;
     border: 1px solid #a05713;
     padding: 25px;
     text-align:left;
@@ -118,7 +118,7 @@ footer {
 }
 
 .sobre{
-    background-color: #ffffff;
+    background-color: #f7cf61;
     border: 1px solid #a05713;
     padding: 25px;
     text-align: center;
