@@ -235,5 +235,42 @@ DELIMITER;
 CALL REGISTAR_PEDIDO(1, @PEDIDO);
 SELECT @PEDIDO;
 
+-- EX 11 : Exemplo completo adicionado item ao pedido
 
+delimiter $$
+
+create procedure adicionar_item_pedido(
+    in p_id_pedido int,
+    in p_id_produto int,
+    in p_quantidade int
+)
+begin
+    declare v_preco decimal(10,2);
+    if p_quantidade <= 0 THEN
+        select 'QUANTIDADE INVALIDA' as mensagem;
+    ELSE
+        SELECT preco
+        into v_preco
+        from produto
+        where id_produto = p_id_produto
+            and ativo = true;
+        
+        insert into item_pedido(
+            id_pedido, id_produto, quantidade, preco_unitario
+        )
+        values (
+            p_id_pedido, p_id_produto, p_quantidade, v_preco
+        );
+        select 'ITEM ADICIONADO' as mensagem;
+    end if;
+end$$
+DELIMITER;
+call adicionar_item_pedido(1,1,1);
+SELECT * from pedido;
+
+-- considerações finais
+show PROCEDURE status; -- listar procedures
+show create PROCEDURE nome_procedure; -- mostrar a definição de um procedure
+drop procedure nome_procedure; -- apagar ou remover procedure
+drop procedure if exists nome_procedures; -- remover somente se existir
 
