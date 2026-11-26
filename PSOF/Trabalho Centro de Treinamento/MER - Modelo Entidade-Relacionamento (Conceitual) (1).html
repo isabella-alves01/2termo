@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MER - Modelo Entidade-Relacionamento (Conceitual)</title>
+<style>
+  html,body{margin:0;background:#f1f5f9;font-family:Arial,Helvetica,sans-serif}
+  .wrap{max-width:1240px;margin:0 auto;padding:12px}
+  svg{width:100%;height:auto;display:block;background:#fff;border-radius:12px}
+  text{font-family:Arial,Helvetica,sans-serif}
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg id="mer" viewBox="0 0 1200 830" role="img" aria-label="MER conceitual com entidades Instrutores, Turmas, Cursos, Alunos e Gestão"></svg>
+</div>
+<script>
+var NS='http://www.w3.org/2000/svg', svg=document.getElementById('mer');
+var BLUE='#1d4f9f', LIGHT='#cfe3f7', DIA='#2a6bc4', INK='#1a2b4a';
+function el(n,a,p,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t!==undefined)e.textContent=t;(p||svg).appendChild(e);return e;}
+
+el('rect',{x:1,y:1,width:1198,height:828,rx:14,fill:'#fff',stroke:'#cbd5e1'});
+el('path',{d:'M1 46V15a14 14 0 0 1 14-14H1185a14 14 0 0 1 14 14V46Z',fill:'#0f2f6b'});
+el('text',{x:20,y:31,fill:'#fff','font-size':20,'font-weight':'bold'},null,'MER — Modelo Entidade-Relacionamento (Conceitual)');
+
+var H=32,STEP=22;
+var ents=[
+ {n:'Instrutores',x:20,y:70,w:270,a:['*id_instrutores','cargo','cpf_instrutor','frequencia_trabalhados_por_semana','telefone_instrutor','carga_horaria_instrutor','nome_instrutor']},
+ {n:'Turmas',x:494,y:70,w:240,a:['*id_turma','sala','horario_inicio_aula','nome_turma','frequencia_por_semana','turno','ano_conclusao','quantidade_vagas']},
+ {n:'Cursos',x:938,y:70,w:240,a:['*id_cursos','categoria_curso','nome_curso','carga_horaria_curso','descricao_curso','status_cursos']},
+ {n:'Alunos',x:494,y:392,w:240,a:['*id_aluno','email_aluno','telefone_aluno','cpf_aluno','nome_aluno','idade_aluno','ano_escolar']},
+ {n:'Gestão',x:938,y:392,w:240,a:['*id_gestao','valor_mensalidade','matricula_aluno','nome_responsavel','cpf_responsavel']}
+];
+ents.forEach(function(e){
+  var h=H+e.a.length*STEP+12;
+  el('rect',{x:e.x,y:e.y,width:e.w,height:h,rx:8,fill:'#fff',stroke:BLUE,'stroke-width':1.5});
+  el('rect',{x:e.x,y:e.y,width:e.w,height:H,rx:8,fill:BLUE});
+  el('rect',{x:e.x,y:e.y+16,width:e.w,height:16,fill:BLUE});
+  el('text',{x:e.x+e.w/2,y:e.y+21,'text-anchor':'middle',fill:'#fff','font-size':16,'font-weight':'bold'},null,e.n);
+  e.a.forEach(function(s,i){
+    var pk=s.charAt(0)==='*', name=pk?s.slice(1):s, cy=e.y+H+20+i*STEP;
+    el('circle',{cx:e.x+16,cy:cy-4,r:5,fill:pk?BLUE:'#fff',stroke:pk?BLUE:'#333','stroke-width':1.2});
+    el('text',{x:e.x+30,y:cy,fill:INK,'font-size':14,'font-weight':pk?'bold':'normal','text-decoration':pk?'underline':'none'},null,name);
+  });
+});
+
+function line(x1,y1,x2,y2){el('line',{x1:x1,y1:y1,x2:x2,y2:y2,stroke:BLUE,'stroke-width':1.5});}
+function dia(cx,cy,name){
+  el('polygon',{points:(cx-50)+','+cy+' '+cx+','+(cy-30)+' '+(cx+50)+','+cy+' '+cx+','+(cy+30),fill:LIGHT,stroke:DIA,'stroke-width':1.5});
+  el('text',{x:cx,y:cy+5,'text-anchor':'middle',fill:INK,'font-size':14,'font-weight':'bold'},null,name);
+}
+function card(x,y,t,anchor){el('text',{x:x,y:y,'text-anchor':anchor||'start',fill:BLUE,'font-size':13,'font-weight':'bold'},null,t);}
+
+line(290,170,342,170); line(442,170,494,170); dia(392,170,'Controla');
+card(296,162,'(1,1)'); card(448,162,'(1,n)');
+line(734,170,786,170); line(886,170,938,170); dia(836,170,'Possui');
+card(740,162,'(1,n)'); card(892,162,'(1,1)');
+line(614,288,614,310); line(614,370,614,392); dia(614,340,'Participa');
+card(622,304,'(1,n)'); card(622,386,'(1,n)');
+line(734,490,786,490); line(886,490,938,490); dia(836,490,'Administra');
+card(740,482,'(1,1)'); card(892,482,'(1,n)');
+
+/* legenda */
+var LY=630;
+el('rect',{x:20,y:LY,width:450,height:178,rx:10,fill:'#eef5fc',stroke:'#9ec0e6'});
+el('text',{x:36,y:LY+26,fill:BLUE,'font-size':16,'font-weight':'bold'},null,'Legenda (MER)');
+el('rect',{x:38,y:LY+42,width:44,height:20,rx:5,fill:'#fff',stroke:BLUE,'stroke-width':1.5});
+el('text',{x:104,y:LY+57,fill:INK,'font-size':14},null,'Entidade');
+el('polygon',{points:'38,'+(LY+84)+' 60,'+(LY+72)+' 82,'+(LY+84)+' 60,'+(LY+96),fill:LIGHT,stroke:DIA,'stroke-width':1.5});
+el('text',{x:104,y:LY+89,fill:INK,'font-size':14},null,'Relacionamento');
+el('circle',{cx:46,cy:LY+114,r:5,fill:BLUE});
+el('line',{x1:54,y1:LY+114,x2:80,y2:LY+114,stroke:BLUE,'stroke-width':2});
+el('text',{x:104,y:LY+119,fill:INK,'font-size':14},null,'Atributo identificador (PK)');
+el('circle',{cx:46,cy:LY+138,r:5,fill:'#fff',stroke:'#333','stroke-width':1.2});
+el('text',{x:104,y:LY+143,fill:INK,'font-size':14},null,'Atributo');
+el('text',{x:38,y:LY+167,fill:BLUE,'font-size':13,'font-weight':'bold'},null,'(1,1) (1,n)');
+el('text',{x:150,y:LY+167,fill:INK,'font-size':14},null,'Cardinalidade (mínima, máxima)');
+
+/* leitura */
+el('rect',{x:494,y:LY,width:684,height:178,rx:10,fill:'#eef5fc',stroke:'#9ec0e6'});
+el('text',{x:510,y:LY+26,fill:BLUE,'font-size':16,'font-weight':'bold'},null,'Leitura dos relacionamentos');
+var L=[
+ 'Cada instrutor controla exatamente 1 turma (1,1).',
+ 'Cada turma é controlada por 1 ou mais instrutores (1,n).',
+ 'Cada turma possui 1 ou mais cursos (1,n).',
+ 'Cada curso está ligado a exatamente 1 turma (1,1).',
+ 'Cada turma tem 1 ou mais alunos (1,n).',
+ 'Cada aluno participa de 1 ou mais turmas (1,n).',
+ 'Cada aluno é administrado por exatamente 1 gestão (1,1).',
+ 'Cada gestão administra 1 ou mais alunos (1,n).'
+];
+L.forEach(function(t,i){
+  el('circle',{cx:516,cy:LY+47+i*17-4,r:2.5,fill:BLUE});
+  el('text',{x:528,y:LY+47+i*17,fill:INK,'font-size':13},null,t);
+});
+</script>
+</body>
+</html>

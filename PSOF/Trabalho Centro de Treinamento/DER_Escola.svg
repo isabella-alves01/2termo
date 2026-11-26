@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1910 1070" width="1910" height="1070" font-family="Liberation Sans, Arial, Helvetica, sans-serif">
+<defs>
+<linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#3b8be0"/><stop offset="1" stop-color="#1f5fb0"/>
+</linearGradient>
+<linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#16294d"/><stop offset="1" stop-color="#1f3d73"/>
+</linearGradient>
+<filter id="sh" x="-5%" y="-5%" width="112%" height="115%">
+  <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0b2447" flood-opacity="0.22"/>
+</filter>
+</defs>
+<rect width="1910" height="1070" fill="#ffffff"/>
+<rect x="10" y="10" width="1890" height="1050" rx="12" fill="#f3f6fb" stroke="#9fb3d1" stroke-width="2"/>
+<path d="M22 10 H1888 a12 12 0 0 1 12 12 V70 H10 V22 a12 12 0 0 1 12 -12 Z" fill="url(#bar)"/>
+<path d="M10 10 H150 L120 70 H10 Z" fill="#d2342f"/>
+<path d="M10 10 H22 a12 12 0 0 0 -12 12 Z" fill="#d2342f"/>
+<text x="170" y="49" font-size="27" font-weight="700" fill="#ffffff">DER — Diagrama Entidade-Relacionamento <tspan font-weight="400" fill="#cfe0ff" font-size="24">(Lógico)</tspan></text>
+<path d="M430 231.0 L570 231.0" fill="none" stroke="#1d3f73" stroke-width="2.4" stroke-linejoin="round"/>
+<line x1="441" y1="240.0" x2="441" y2="222.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="449" y1="240.0" x2="449" y2="222.0" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="550" y1="231.0" x2="570" y2="241.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="550" y1="231.0" x2="570" y2="231.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="550" y1="231.0" x2="570" y2="221.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="543" y1="222.0" x2="543" y2="240.0" stroke="#1d3f73" stroke-width="2.4"/>
+<path d="M950 201.0 L1010.0 201.0 L1010.0 311.0 L1070 311.0" fill="none" stroke="#1d3f73" stroke-width="2.4" stroke-linejoin="round"/>
+<line x1="961" y1="210.0" x2="961" y2="192.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="969" y1="210.0" x2="969" y2="192.0" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="1050" y1="311.0" x2="1070" y2="321.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1050" y1="311.0" x2="1070" y2="311.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1050" y1="311.0" x2="1070" y2="301.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1043" y1="302.0" x2="1043" y2="320.0" stroke="#1d3f73" stroke-width="2.4"/>
+<path d="M1430 281.0 L1320 281.0" fill="none" stroke="#1d3f73" stroke-width="2.4" stroke-linejoin="round"/>
+<line x1="1419" y1="272.0" x2="1419" y2="290.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1411" y1="272.0" x2="1411" y2="290.0" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="1340" y1="281.0" x2="1320" y2="271.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1340" y1="281.0" x2="1320" y2="281.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1340" y1="281.0" x2="1320" y2="291.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1347" y1="290.0" x2="1347" y2="272.0" stroke="#1d3f73" stroke-width="2.4"/>
+<path d="M760.0 456 L760.0 560" fill="none" stroke="#1d3f73" stroke-width="2.4" stroke-linejoin="round"/>
+<line x1="751.0" y1="467" x2="769.0" y2="467" stroke="#1d3f73" stroke-width="2.4"/><line x1="751.0" y1="475" x2="769.0" y2="475" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="760.0" y1="540" x2="750.0" y2="560" stroke="#1d3f73" stroke-width="2.4"/><line x1="760.0" y1="540" x2="760.0" y2="560" stroke="#1d3f73" stroke-width="2.4"/><line x1="760.0" y1="540" x2="770.0" y2="560" stroke="#1d3f73" stroke-width="2.4"/><line x1="769.0" y1="533" x2="751.0" y2="533" stroke="#1d3f73" stroke-width="2.4"/>
+<path d="M760.0 760 L760.0 656" fill="none" stroke="#1d3f73" stroke-width="2.4" stroke-linejoin="round"/>
+<line x1="769.0" y1="749" x2="751.0" y2="749" stroke="#1d3f73" stroke-width="2.4"/><line x1="769.0" y1="741" x2="751.0" y2="741" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="760.0" y1="676" x2="770.0" y2="656" stroke="#1d3f73" stroke-width="2.4"/><line x1="760.0" y1="676" x2="760.0" y2="656" stroke="#1d3f73" stroke-width="2.4"/><line x1="760.0" y1="676" x2="750.0" y2="656" stroke="#1d3f73" stroke-width="2.4"/><line x1="751.0" y1="683" x2="769.0" y2="683" stroke="#1d3f73" stroke-width="2.4"/>
+<path d="M950 811.0 L1070 811.0" fill="none" stroke="#1d3f73" stroke-width="2.4" stroke-linejoin="round"/>
+<line x1="961" y1="820.0" x2="961" y2="802.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="969" y1="820.0" x2="969" y2="802.0" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="1050" y1="811.0" x2="1070" y2="821.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1050" y1="811.0" x2="1070" y2="811.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1050" y1="811.0" x2="1070" y2="801.0" stroke="#1d3f73" stroke-width="2.4"/><line x1="1043" y1="802.0" x2="1043" y2="820.0" stroke="#1d3f73" stroke-width="2.4"/>
+<g filter="url(#sh)">
+<rect x="50" y="180" width="380" height="246" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M50 216 V187 a7 7 0 0 1 7 -7 H423 a7 7 0 0 1 7 7 V216 Z" fill="url(#hdr)"/>
+<text x="240.0" y="204" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="0.5">INSTRUTORES</text>
+<line x1="51" y1="216" x2="429" y2="216" stroke="#c5d3e8" stroke-width="1"/>
+<text x="62" y="236" font-size="12.5" font-weight="700" fill="#c0262d">PK</text>
+<text x="118" y="236" font-size="15" font-weight="700" fill="#142a4d">id_instrutores</text>
+<text x="300" y="236" font-size="14" fill="#44546f">INT</text>
+<rect x="51" y="246" width="378" height="30" fill="#f1f6fd"/>
+<line x1="51" y1="246" x2="429" y2="246" stroke="#c5d3e8" stroke-width="1"/>
+<text x="118" y="266" font-size="15" fill="#142a4d">nome_instrutor</text>
+<text x="300" y="266" font-size="14" fill="#44546f">VARCHAR(100)</text>
+<line x1="51" y1="276" x2="429" y2="276" stroke="#c5d3e8" stroke-width="1"/>
+<text x="118" y="296" font-size="15" fill="#142a4d">cpf_instrutor</text>
+<text x="300" y="296" font-size="14" fill="#44546f">VARCHAR(14)</text>
+<rect x="51" y="306" width="378" height="30" fill="#f1f6fd"/>
+<line x1="51" y1="306" x2="429" y2="306" stroke="#c5d3e8" stroke-width="1"/>
+<text x="118" y="326" font-size="15" fill="#142a4d">telefone_instrutor</text>
+<text x="300" y="326" font-size="14" fill="#44546f">VARCHAR(20)</text>
+<line x1="51" y1="336" x2="429" y2="336" stroke="#c5d3e8" stroke-width="1"/>
+<text x="118" y="356" font-size="15" fill="#142a4d">cargo</text>
+<text x="300" y="356" font-size="14" fill="#44546f">VARCHAR(20)</text>
+<rect x="51" y="366" width="378" height="30" fill="#f1f6fd"/>
+<line x1="51" y1="366" x2="429" y2="366" stroke="#c5d3e8" stroke-width="1"/>
+<text x="118" y="386" font-size="15" fill="#142a4d">carga_horaria_instrutor</text>
+<text x="300" y="386" font-size="14" fill="#44546f">INT</text>
+<line x1="51" y1="396" x2="429" y2="396" stroke="#c5d3e8" stroke-width="1"/>
+<text x="118" y="416" font-size="15" fill="#142a4d">frequencia_trabalho</text>
+<text x="300" y="416" font-size="14" fill="#44546f">VARCHAR(20)</text>
+<line x1="110" y1="216" x2="110" y2="426" stroke="#c5d3e8" stroke-width="1"/>
+<line x1="292" y1="216" x2="292" y2="426" stroke="#c5d3e8" stroke-width="1"/>
+<rect x="50" y="180" width="380" height="246" rx="7" fill="none" stroke="#1f4e8c" stroke-width="2"/>
+<g filter="url(#sh)">
+<rect x="570" y="150" width="380" height="306" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M570 186 V157 a7 7 0 0 1 7 -7 H943 a7 7 0 0 1 7 7 V186 Z" fill="url(#hdr)"/>
+<text x="760.0" y="174" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="0.5">TURMAS</text>
+<line x1="571" y1="186" x2="949" y2="186" stroke="#c5d3e8" stroke-width="1"/>
+<text x="582" y="206" font-size="12.5" font-weight="700" fill="#c0262d">PK</text>
+<text x="638" y="206" font-size="15" font-weight="700" fill="#142a4d">id_turma</text>
+<text x="826" y="206" font-size="14" fill="#44546f">INT</text>
+<rect x="571" y="216" width="378" height="30" fill="#f1f6fd"/>
+<line x1="571" y1="216" x2="949" y2="216" stroke="#c5d3e8" stroke-width="1"/>
+<text x="582" y="236" font-size="12.5" font-weight="700" fill="#1f4e8c">FK</text>
+<text x="638" y="236" font-size="15" fill="#142a4d">id_instrutores</text>
+<text x="826" y="236" font-size="14" fill="#44546f">INT</text>
+<line x1="571" y1="246" x2="949" y2="246" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="266" font-size="15" fill="#142a4d">nome_turma</text>
+<text x="826" y="266" font-size="14" fill="#44546f">VARCHAR(50)</text>
+<rect x="571" y="276" width="378" height="30" fill="#f1f6fd"/>
+<line x1="571" y1="276" x2="949" y2="276" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="296" font-size="15" fill="#142a4d">sala</text>
+<text x="826" y="296" font-size="14" fill="#44546f">VARCHAR(20)</text>
+<line x1="571" y1="306" x2="949" y2="306" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="326" font-size="15" fill="#142a4d">turno</text>
+<text x="826" y="326" font-size="14" fill="#44546f">VARCHAR(20)</text>
+<rect x="571" y="336" width="378" height="30" fill="#f1f6fd"/>
+<line x1="571" y1="336" x2="949" y2="336" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="356" font-size="15" fill="#142a4d">horario_inicio_aula</text>
+<text x="826" y="356" font-size="14" fill="#44546f">TIME</text>
+<line x1="571" y1="366" x2="949" y2="366" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="386" font-size="15" fill="#142a4d">frequencia_por_semana</text>
+<text x="826" y="386" font-size="14" fill="#44546f">INT</text>
+<rect x="571" y="396" width="378" height="30" fill="#f1f6fd"/>
+<line x1="571" y1="396" x2="949" y2="396" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="416" font-size="15" fill="#142a4d">ano_conclusao</text>
+<text x="826" y="416" font-size="14" fill="#44546f">INT</text>
+<line x1="571" y1="426" x2="949" y2="426" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="446" font-size="15" fill="#142a4d">quantidade_vagas</text>
+<text x="826" y="446" font-size="14" fill="#44546f">INT</text>
+<line x1="630" y1="186" x2="630" y2="456" stroke="#c5d3e8" stroke-width="1"/>
+<line x1="818" y1="186" x2="818" y2="456" stroke="#c5d3e8" stroke-width="1"/>
+<rect x="570" y="150" width="380" height="306" rx="7" fill="none" stroke="#1f4e8c" stroke-width="2"/>
+<g filter="url(#sh)">
+<rect x="1070" y="230" width="250" height="96" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M1070 266 V237 a7 7 0 0 1 7 -7 H1313 a7 7 0 0 1 7 7 V266 Z" fill="url(#hdr)"/>
+<text x="1195.0" y="254" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="0.5">POSSUI</text>
+<line x1="1071" y1="266" x2="1319" y2="266" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1082" y="286" font-size="12.5" font-weight="700" fill="#6b2c91">PK FK</text>
+<text x="1138" y="286" font-size="15" font-weight="700" fill="#142a4d">id_cursos</text>
+<text x="1235" y="286" font-size="14" fill="#44546f">INT</text>
+<rect x="1071" y="296" width="248" height="30" fill="#f1f6fd"/>
+<line x1="1071" y1="296" x2="1319" y2="296" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1082" y="316" font-size="12.5" font-weight="700" fill="#6b2c91">PK FK</text>
+<text x="1138" y="316" font-size="15" font-weight="700" fill="#142a4d">id_turma</text>
+<text x="1235" y="316" font-size="14" fill="#44546f">INT</text>
+<line x1="1130" y1="266" x2="1130" y2="326" stroke="#c5d3e8" stroke-width="1"/>
+<line x1="1227" y1="266" x2="1227" y2="326" stroke="#c5d3e8" stroke-width="1"/>
+<rect x="1070" y="230" width="250" height="96" rx="7" fill="none" stroke="#1f4e8c" stroke-width="2"/>
+<g filter="url(#sh)">
+<rect x="1430" y="230" width="430" height="216" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M1430 266 V237 a7 7 0 0 1 7 -7 H1853 a7 7 0 0 1 7 7 V266 Z" fill="url(#hdr)"/>
+<text x="1645.0" y="254" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="0.5">CURSOS</text>
+<line x1="1431" y1="266" x2="1859" y2="266" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1442" y="286" font-size="12.5" font-weight="700" fill="#c0262d">PK</text>
+<text x="1498" y="286" font-size="15" font-weight="700" fill="#142a4d">id_cursos</text>
+<text x="1675" y="286" font-size="14" fill="#44546f">INT</text>
+<rect x="1431" y="296" width="428" height="30" fill="#f1f6fd"/>
+<line x1="1431" y1="296" x2="1859" y2="296" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1498" y="316" font-size="15" fill="#142a4d">categoria_curso</text>
+<text x="1675" y="316" font-size="14" fill="#44546f">VARCHAR(20) NOT NULL</text>
+<line x1="1431" y1="326" x2="1859" y2="326" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1498" y="346" font-size="15" fill="#142a4d">nome_curso</text>
+<text x="1675" y="346" font-size="14" fill="#44546f">VARCHAR(20) NOT NULL</text>
+<rect x="1431" y="356" width="428" height="30" fill="#f1f6fd"/>
+<line x1="1431" y1="356" x2="1859" y2="356" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1498" y="376" font-size="15" fill="#142a4d">carga_horaria_curso</text>
+<text x="1675" y="376" font-size="14" fill="#44546f">INT NOT NULL</text>
+<line x1="1431" y1="386" x2="1859" y2="386" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1498" y="406" font-size="15" fill="#142a4d">descricao_curso</text>
+<text x="1675" y="406" font-size="14" fill="#44546f">VARCHAR(500) NOT NULL</text>
+<rect x="1431" y="416" width="428" height="30" fill="#f1f6fd"/>
+<line x1="1431" y1="416" x2="1859" y2="416" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1498" y="436" font-size="15" fill="#142a4d">status_cursos</text>
+<text x="1675" y="436" font-size="14" fill="#44546f">TIME NOT NULL</text>
+<line x1="1490" y1="266" x2="1490" y2="446" stroke="#c5d3e8" stroke-width="1"/>
+<line x1="1667" y1="266" x2="1667" y2="446" stroke="#c5d3e8" stroke-width="1"/>
+<rect x="1430" y="230" width="430" height="216" rx="7" fill="none" stroke="#1f4e8c" stroke-width="2"/>
+<g filter="url(#sh)">
+<rect x="635" y="560" width="250" height="96" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M635 596 V567 a7 7 0 0 1 7 -7 H878 a7 7 0 0 1 7 7 V596 Z" fill="url(#hdr)"/>
+<text x="760.0" y="584" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="0.5">PARTICIPA</text>
+<line x1="636" y1="596" x2="884" y2="596" stroke="#c5d3e8" stroke-width="1"/>
+<text x="647" y="616" font-size="12.5" font-weight="700" fill="#6b2c91">PK FK</text>
+<text x="703" y="616" font-size="15" font-weight="700" fill="#142a4d">id_aluno</text>
+<text x="800" y="616" font-size="14" fill="#44546f">INT</text>
+<rect x="636" y="626" width="248" height="30" fill="#f1f6fd"/>
+<line x1="636" y1="626" x2="884" y2="626" stroke="#c5d3e8" stroke-width="1"/>
+<text x="647" y="646" font-size="12.5" font-weight="700" fill="#6b2c91">PK FK</text>
+<text x="703" y="646" font-size="15" font-weight="700" fill="#142a4d">id_turma</text>
+<text x="800" y="646" font-size="14" fill="#44546f">INT</text>
+<line x1="695" y1="596" x2="695" y2="656" stroke="#c5d3e8" stroke-width="1"/>
+<line x1="792" y1="596" x2="792" y2="656" stroke="#c5d3e8" stroke-width="1"/>
+<rect x="635" y="560" width="250" height="96" rx="7" fill="none" stroke="#1f4e8c" stroke-width="2"/>
+<g filter="url(#sh)">
+<rect x="570" y="760" width="380" height="246" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M570 796 V767 a7 7 0 0 1 7 -7 H943 a7 7 0 0 1 7 7 V796 Z" fill="url(#hdr)"/>
+<text x="760.0" y="784" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="0.5">ALUNOS</text>
+<line x1="571" y1="796" x2="949" y2="796" stroke="#c5d3e8" stroke-width="1"/>
+<text x="582" y="816" font-size="12.5" font-weight="700" fill="#c0262d">PK</text>
+<text x="638" y="816" font-size="15" font-weight="700" fill="#142a4d">id_aluno</text>
+<text x="810" y="816" font-size="14" fill="#44546f">INT</text>
+<rect x="571" y="826" width="378" height="30" fill="#f1f6fd"/>
+<line x1="571" y1="826" x2="949" y2="826" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="846" font-size="15" fill="#142a4d">nome_aluno</text>
+<text x="810" y="846" font-size="14" fill="#44546f">VARCHAR(100)</text>
+<line x1="571" y1="856" x2="949" y2="856" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="876" font-size="15" fill="#142a4d">email_aluno</text>
+<text x="810" y="876" font-size="14" fill="#44546f">VARCHAR(120)</text>
+<rect x="571" y="886" width="378" height="30" fill="#f1f6fd"/>
+<line x1="571" y1="886" x2="949" y2="886" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="906" font-size="15" fill="#142a4d">telefone_aluno</text>
+<text x="810" y="906" font-size="14" fill="#44546f">VARCHAR(20)</text>
+<line x1="571" y1="916" x2="949" y2="916" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="936" font-size="15" fill="#142a4d">cpf_aluno</text>
+<text x="810" y="936" font-size="14" fill="#44546f">VARCHAR(14)</text>
+<rect x="571" y="946" width="378" height="30" fill="#f1f6fd"/>
+<line x1="571" y1="946" x2="949" y2="946" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="966" font-size="15" fill="#142a4d">idade_aluno</text>
+<text x="810" y="966" font-size="14" fill="#44546f">INT</text>
+<line x1="571" y1="976" x2="949" y2="976" stroke="#c5d3e8" stroke-width="1"/>
+<text x="638" y="996" font-size="15" fill="#142a4d">ano_escolar</text>
+<text x="810" y="996" font-size="14" fill="#44546f">VARCHAR(30)</text>
+<line x1="630" y1="796" x2="630" y2="1006" stroke="#c5d3e8" stroke-width="1"/>
+<line x1="802" y1="796" x2="802" y2="1006" stroke="#c5d3e8" stroke-width="1"/>
+<rect x="570" y="760" width="380" height="246" rx="7" fill="none" stroke="#1f4e8c" stroke-width="2"/>
+<g filter="url(#sh)">
+<rect x="1070" y="730" width="400" height="216" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M1070 766 V737 a7 7 0 0 1 7 -7 H1463 a7 7 0 0 1 7 7 V766 Z" fill="url(#hdr)"/>
+<text x="1270.0" y="754" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="0.5">GESTÃO</text>
+<line x1="1071" y1="766" x2="1469" y2="766" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1082" y="786" font-size="12.5" font-weight="700" fill="#c0262d">PK</text>
+<text x="1138" y="786" font-size="15" font-weight="700" fill="#142a4d">id_gestao</text>
+<text x="1320" y="786" font-size="14" fill="#44546f">INT</text>
+<rect x="1071" y="796" width="398" height="30" fill="#f1f6fd"/>
+<line x1="1071" y1="796" x2="1469" y2="796" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1082" y="816" font-size="12.5" font-weight="700" fill="#1f4e8c">FK</text>
+<text x="1138" y="816" font-size="15" fill="#142a4d">id_aluno</text>
+<text x="1320" y="816" font-size="14" fill="#44546f">INT</text>
+<line x1="1071" y1="826" x2="1469" y2="826" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1138" y="846" font-size="15" fill="#142a4d">valor_mensalidade</text>
+<text x="1320" y="846" font-size="14" fill="#44546f">DECIMAL(10,2)</text>
+<rect x="1071" y="856" width="398" height="30" fill="#f1f6fd"/>
+<line x1="1071" y1="856" x2="1469" y2="856" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1138" y="876" font-size="15" fill="#142a4d">matricula_aluno</text>
+<text x="1320" y="876" font-size="14" fill="#44546f">VARCHAR(30)</text>
+<line x1="1071" y1="886" x2="1469" y2="886" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1138" y="906" font-size="15" fill="#142a4d">nome_responsavel</text>
+<text x="1320" y="906" font-size="14" fill="#44546f">VARCHAR(100)</text>
+<rect x="1071" y="916" width="398" height="30" fill="#f1f6fd"/>
+<line x1="1071" y1="916" x2="1469" y2="916" stroke="#c5d3e8" stroke-width="1"/>
+<text x="1138" y="936" font-size="15" fill="#142a4d">cpf_responsavel</text>
+<text x="1320" y="936" font-size="14" fill="#44546f">VARCHAR(14)</text>
+<line x1="1130" y1="766" x2="1130" y2="946" stroke="#c5d3e8" stroke-width="1"/>
+<line x1="1312" y1="766" x2="1312" y2="946" stroke="#c5d3e8" stroke-width="1"/>
+<rect x="1070" y="730" width="400" height="216" rx="7" fill="none" stroke="#1f4e8c" stroke-width="2"/>
+<g filter="url(#sh)">
+<rect x="50" y="800" width="380" height="205" rx="7" fill="#ffffff" stroke="#1f4e8c" stroke-width="2"/>
+</g>
+<path d="M50 836 V807 a7 7 0 0 1 7 -7 H423 a7 7 0 0 1 7 7 V836 Z" fill="url(#hdr)"/>
+<text x="66" y="824" font-size="17" font-weight="700" fill="#ffffff">Legenda <tspan font-weight="400" font-size="15">(DER)</tspan></text>
+<text x="68" y="862" font-size="15" font-weight="700" fill="#c0262d">PK</text>
+<text x="110" y="862" font-size="15" fill="#142a4d">Chave Primária</text>
+<text x="68" y="892" font-size="15" font-weight="700" fill="#1f4e8c">FK</text>
+<text x="110" y="892" font-size="15" fill="#142a4d">Chave Estrangeira</text>
+<text x="68" y="922" font-size="15" font-weight="700" fill="#6b2c91">PK FK</text>
+<text x="128" y="922" font-size="15" fill="#142a4d">Chave Primária composta</text>
+<line x1="64" y1="947" x2="116" y2="947" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="75" y1="956" x2="75" y2="938" stroke="#1d3f73" stroke-width="2.4"/><line x1="83" y1="956" x2="83" y2="938" stroke="#1d3f73" stroke-width="2.4"/>
+<text x="130" y="952" font-size="15" fill="#142a4d">Participação 1 (um)</text>
+<line x1="64" y1="977" x2="116" y2="977" stroke="#1d3f73" stroke-width="2.4"/>
+<line x1="84" y1="977" x2="64" y2="967" stroke="#1d3f73" stroke-width="2.4"/><line x1="84" y1="977" x2="64" y2="977" stroke="#1d3f73" stroke-width="2.4"/><line x1="84" y1="977" x2="64" y2="987" stroke="#1d3f73" stroke-width="2.4"/><line x1="91" y1="986" x2="91" y2="968" stroke="#1d3f73" stroke-width="2.4"/>
+<text x="130" y="982" font-size="15" fill="#142a4d">Participação N (muitos)</text>
+</svg>
